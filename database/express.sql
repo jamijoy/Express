@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 28, 2020 at 10:10 PM
+-- Generation Time: Feb 29, 2020 at 07:03 PM
 -- Server version: 10.1.28-MariaDB
 -- PHP Version: 7.1.11
 
@@ -307,8 +307,8 @@ CREATE TABLE `user_login` (
 
 INSERT INTO `user_login` (`user_id`, `email`, `password`) VALUES
 (10000, 'admin@gmail.com', 'admin'),
-(10001, 'content.manager@gmail.com', 'content.manager'),
-(10002, 'account.manager@gmail.com', 'account.manager'),
+(10001, 'content.manager@gmail.com', 'cm'),
+(10002, 'account.manager@gmail.com', 'am'),
 (10003, 'user1@gmail.com', 'user1'),
 (10004, 'user2@gmail.com', 'user2');
 
@@ -435,7 +435,7 @@ ALTER TABLE `account_type`
 -- AUTO_INCREMENT for table `following_status`
 --
 ALTER TABLE `following_status`
-  MODIFY `following_status_id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=40;
+  MODIFY `following_status_id` int(5) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `message_details`
