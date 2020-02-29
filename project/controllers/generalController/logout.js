@@ -5,6 +5,7 @@ var app = express();
 
 router.get('/', function(req, res){
 	console.log('logout command accepted!');
+	res.clearCookie('loginUserId');
 	req.session,username = null;
 	res.redirect('/');
 });

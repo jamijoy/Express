@@ -49,8 +49,8 @@ router.post('/', function(request, response){
 				if(results.length > 0){
 					console.log("1");
 					response.cookie('loginUserId', results[0].user_id);
-					// var loginUserId = request.cookies['loginUserId'];
-					// console.log('call for details of ', loginUserId);
+					var loginUserId = request.cookies['loginUserId'];
+					console.log('call for details of ', loginUserId);
 					response.redirect('/generalController/mainHome');
 				}else{
 					console.log("login page back");
