@@ -11,6 +11,7 @@ var app = express();
 var login = require('./controllers/generalController/login');
 var logout = require('./controllers/generalController/logout');
 var register = require('./controllers/generalController/registration');
+var mainHome = require('./controllers/generalController/mainHome');
 // *****general declaration*****
 
 // *****account manager declaration*****
@@ -48,6 +49,7 @@ app.use('/static', express.static('static'));
 
 // *****general middleware  start*****
 app.use('/', login);
+app.use('/generalController/mainHome', mainHome);
 app.use('/generalController/logout', logout);
 app.use('/generalController/register', register);
 // *****general middleware end*****

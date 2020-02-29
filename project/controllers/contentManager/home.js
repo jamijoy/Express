@@ -4,7 +4,7 @@ var router = express.Router();
 router.get('/', function(request, response){
     console.log('content manager home page requested with get method!');
     var data = {
-        username: request.body.username
+        user_id: request.cookies['loginUserId']
     }
     response.render('contentManager/home/index', data);
 });
