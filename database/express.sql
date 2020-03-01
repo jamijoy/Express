@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 29, 2020 at 07:03 PM
+-- Generation Time: Mar 01, 2020 at 05:07 PM
 -- Server version: 10.1.28-MariaDB
 -- PHP Version: 7.1.11
 
@@ -102,8 +102,22 @@ CREATE TABLE `following_status` (
 
 CREATE TABLE `message_details` (
   `message_id` int(11) NOT NULL,
-  `message_text` int(11) NOT NULL
+  `message_text` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `message_details`
+--
+
+INSERT INTO `message_details` (`message_id`, `message_text`) VALUES
+(40000, '0'),
+(40001, '0'),
+(40002, 'Your post request is canceled.'),
+(40003, 'Your post request is canceled.'),
+(40004, 'Your post request is canceled.'),
+(40005, 'Your post request is canceled.'),
+(40006, 'Your post request is canceled.'),
+(40007, 'Your post request is canceled.');
 
 -- --------------------------------------------------------
 
@@ -117,6 +131,14 @@ CREATE TABLE `message_info` (
   `message_id` int(5) NOT NULL,
   `message_status_id` int(5) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `message_info`
+--
+
+INSERT INTO `message_info` (`sender_id`, `receiver_id`, `message_id`, `message_status_id`) VALUES
+(10001, 10003, 40006, 60),
+(10001, 10004, 40007, 60);
 
 -- --------------------------------------------------------
 
@@ -168,9 +190,24 @@ CREATE TABLE `post_comment_details` (
 
 CREATE TABLE `post_content` (
   `post_id` int(5) NOT NULL,
-  `post_text` varchar(100) DEFAULT NULL,
+  `post_text` varchar(500) DEFAULT NULL,
   `post_image` varchar(100) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `post_content`
+--
+
+INSERT INTO `post_content` (`post_id`, `post_text`, `post_image`) VALUES
+(20000, 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.', NULL),
+(20001, 'It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using \'Content here, content here\', making it look like readable English.', NULL),
+(20002, 'It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.', NULL),
+(20003, 'The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using \'Content here, content here\', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for \'lorem ipsum\' will uncover many web sites still in their infancy.', NULL),
+(20004, 'There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don\'t look even slightly believable.', NULL),
+(20005, 'Lorem Ipsum comes from sections 1.10.32 and 1.10.33 of \"de Finibus Bonorum et Malorum\" (The Extremes of Good and Evil) by Cicero, written in 45 BC.', NULL),
+(20006, 'The standard chunk of Lorem Ipsum used since the 1500s is reproduced below for those interested. Sections 1.10.32 and 1.10.33 from \"de Finibus Bonorum et Malorum\" by Cicero are also reproduced in their exact original form, accompanied by English versions from the 1914 translation by H. Rackham.', NULL),
+(20008, 'Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).', NULL),
+(20009, 'Lorem Ipsum comes from sections 1.10.32 and 1.10.33 of \"de Finibus Bonorum et Malorum\" (The Extremes of Good and Evil) by Cicero, written in 45 BC.', NULL);
 
 -- --------------------------------------------------------
 
@@ -184,6 +221,21 @@ CREATE TABLE `post_info` (
   `post_type_id` int(5) NOT NULL,
   `post_status_id` int(5) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `post_info`
+--
+
+INSERT INTO `post_info` (`post_id`, `user_id`, `post_type_id`, `post_status_id`) VALUES
+(20000, 10003, 40, 50),
+(20001, 10003, 40, 50),
+(20002, 10003, 41, 50),
+(20003, 10003, 41, 51),
+(20004, 10003, 42, 50),
+(20005, 10004, 40, 51),
+(20006, 10004, 40, 50),
+(20008, 10004, 41, 51),
+(20009, 10004, 42, 50);
 
 -- --------------------------------------------------------
 
@@ -441,7 +493,7 @@ ALTER TABLE `following_status`
 -- AUTO_INCREMENT for table `message_details`
 --
 ALTER TABLE `message_details`
-  MODIFY `message_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=40000;
+  MODIFY `message_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=40008;
 
 --
 -- AUTO_INCREMENT for table `message_status`
@@ -453,19 +505,19 @@ ALTER TABLE `message_status`
 -- AUTO_INCREMENT for table `post_comment_details`
 --
 ALTER TABLE `post_comment_details`
-  MODIFY `comment_id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30000;
+  MODIFY `comment_id` int(5) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `post_content`
 --
 ALTER TABLE `post_content`
-  MODIFY `post_id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20000;
+  MODIFY `post_id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20010;
 
 --
 -- AUTO_INCREMENT for table `post_info`
 --
 ALTER TABLE `post_info`
-  MODIFY `post_id` int(5) NOT NULL AUTO_INCREMENT;
+  MODIFY `post_id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20010;
 
 --
 -- AUTO_INCREMENT for table `post_status`
