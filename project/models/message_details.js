@@ -21,5 +21,15 @@ module.exports = {
 				callback(false);
 			}
 		});
+	},
+	insertWarningMessage : function(callback){
+        var sql = "insert into message_details(message_text) values(?)";
+		db.execute(sql, "your account was warned", function(status){
+			if(status){
+				callback(true);
+			}else{
+				callback(false);
+			}
+		});
     }
 }

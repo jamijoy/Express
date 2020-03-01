@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 01, 2020 at 05:07 PM
+-- Generation Time: Mar 01, 2020 at 06:21 PM
 -- Server version: 10.1.28-MariaDB
 -- PHP Version: 7.1.11
 
@@ -32,6 +32,13 @@ CREATE TABLE `account_block_request` (
   `user_id` int(5) NOT NULL,
   `block_status` varchar(15) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `account_block_request`
+--
+
+INSERT INTO `account_block_request` (`user_id`, `block_status`) VALUES
+(10003, 'pending');
 
 -- --------------------------------------------------------
 
@@ -83,6 +90,14 @@ CREATE TABLE `account_warning` (
   `warning_count` int(3) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Dumping data for table `account_warning`
+--
+
+INSERT INTO `account_warning` (`user_id`, `warning_count`) VALUES
+(10003, 1),
+(10004, 1);
+
 -- --------------------------------------------------------
 
 --
@@ -117,7 +132,15 @@ INSERT INTO `message_details` (`message_id`, `message_text`) VALUES
 (40004, 'Your post request is canceled.'),
 (40005, 'Your post request is canceled.'),
 (40006, 'Your post request is canceled.'),
-(40007, 'Your post request is canceled.');
+(40007, 'Your post request is canceled.'),
+(40008, 'your account was warned'),
+(40009, 'your account was warned'),
+(40010, 'your account was warned'),
+(40011, 'your account was warned'),
+(40012, 'your account was warned'),
+(40013, 'your account was warned'),
+(40014, 'your account was warned'),
+(40015, 'Your post request is canceled.');
 
 -- --------------------------------------------------------
 
@@ -138,7 +161,15 @@ CREATE TABLE `message_info` (
 
 INSERT INTO `message_info` (`sender_id`, `receiver_id`, `message_id`, `message_status_id`) VALUES
 (10001, 10003, 40006, 60),
-(10001, 10004, 40007, 60);
+(10001, 10004, 40007, 60),
+(10001, 10004, 40008, 60),
+(10001, 10004, 40009, 60),
+(10001, 10004, 40010, 60),
+(10001, 10003, 40011, 60),
+(10001, 10003, 40012, 60),
+(10001, 10003, 40013, 60),
+(10001, 10004, 40014, 60),
+(10001, 10003, 40015, 60);
 
 -- --------------------------------------------------------
 
@@ -200,7 +231,6 @@ CREATE TABLE `post_content` (
 
 INSERT INTO `post_content` (`post_id`, `post_text`, `post_image`) VALUES
 (20000, 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.', NULL),
-(20001, 'It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using \'Content here, content here\', making it look like readable English.', NULL),
 (20002, 'It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.', NULL),
 (20003, 'The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using \'Content here, content here\', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for \'lorem ipsum\' will uncover many web sites still in their infancy.', NULL),
 (20004, 'There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don\'t look even slightly believable.', NULL),
@@ -227,15 +257,14 @@ CREATE TABLE `post_info` (
 --
 
 INSERT INTO `post_info` (`post_id`, `user_id`, `post_type_id`, `post_status_id`) VALUES
-(20000, 10003, 40, 50),
-(20001, 10003, 40, 50),
+(20000, 10003, 40, 51),
 (20002, 10003, 41, 50),
 (20003, 10003, 41, 51),
 (20004, 10003, 42, 50),
 (20005, 10004, 40, 51),
-(20006, 10004, 40, 50),
+(20006, 10004, 40, 51),
 (20008, 10004, 41, 51),
-(20009, 10004, 42, 50);
+(20009, 10004, 42, 51);
 
 -- --------------------------------------------------------
 
@@ -493,7 +522,7 @@ ALTER TABLE `following_status`
 -- AUTO_INCREMENT for table `message_details`
 --
 ALTER TABLE `message_details`
-  MODIFY `message_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=40008;
+  MODIFY `message_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=40016;
 
 --
 -- AUTO_INCREMENT for table `message_status`
