@@ -1,12 +1,14 @@
 var express = require('express');
+var user_details = require.main.require('./models/user_details');
+var post_join = require.main.require('./models/post_join');
 var router = express.Router();
 
 router.get('/', function(request, response){
     console.log('content manager home page requested with get method!');
-    var data = {
-        user_id: request.cookies['loginUserId']
-    }
-    response.render('contentManager/home/index', data);
+    user_details.getById(request.cookies['loginUserId'], function(result){
+        console.log("general home controllers");
+        response.render('contentManager/home/index', {user: result});
+    });
 });
 
 router.get('/viewProfile', function(request, response){
@@ -21,7 +23,13 @@ router.get('/index', function(request, response){
 
 router.get('/contentRequest', function(request, response){
     console.log('content manager search page requested with get method!');
-    response.render('contentManager/contentView/contentRequest');
+    post_join.getAll(function(results){
+        if(results.length > 0){
+            response.render('contentManager/contentView/contentRequest', {userList: results});
+        }else{
+            res.redirect('/contentManager/home');
+        }
+    });
 });
 
 router.get('/report', function(request, response){

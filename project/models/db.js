@@ -24,8 +24,8 @@ module.exports ={
 		getConnection(function(connection){
 			if(params != null){
 				connection.query(sql , params, function (error, results) {
-					console.log("result from db: ",results);
-					console.log("error  from db: ",error);
+					// console.log("result from db: ",results);
+					// console.log("error  from db: ",error);
 					if(results.length != 0){
 						callback(results);
 					}else{
