@@ -4,8 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>create post</title>
+    <link rel="stylesheet" href="../../../static/css/css/bootstrap.css">
+    <!-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous"> -->
     <link rel="stylesheet" href="../../../static/css/contentManager/createPost/createPost.css">
-    <link rel="stylesheet" href="../../../static/css/css/all.min.css">
 </head>
 <body>
     <!-- navbar content start -->
@@ -23,14 +24,11 @@
     <!-- navbar content start -->
 
     <div class="search-container">
-        <form>
-            <p>Please select post type:</p>
-            <input type="radio" id="public" name="post" value="public">
-            <label for="public">public</label>
-            <input type="radio" id="anonymous" name="post" value="anonymous">
-            <label for="anonymous">anonymous</label><br>
-            <input type="text" placeholder="" name="message" class="message">
-            <br>
+        <form action="/generalController/postCreate" method="POST">
+            <div class="form-group">
+                <label for="exampleFormControlTextarea1">Create new post:</label>
+                <textarea class="form-control" id="exampleFormControlTextarea1" name="post" rows="10"></textarea>
+            </div>
             <button type="submit" class="submit-message">post</button>
         </form>
     </div>

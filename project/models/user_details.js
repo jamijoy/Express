@@ -12,5 +12,16 @@ module.exports = {
 				callback(null);
 			}
 		});
+	},
+	getUserType : function(user_id, callback){
+		var sql = "SELECT user_type.user_type_name FROM user_details, user_type WHERE user_details.user_type_id = user_type.user_type_id AND user_details.user_id = ?";
+		db.getResults(sql, [user_id], function(result){
+			if(result.length > 0){
+				callback(result);
+			}
+			else{
+				callback(null);
+			}
+		});
 	}
 }

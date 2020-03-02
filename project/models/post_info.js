@@ -41,5 +41,16 @@ module.exports = {
 				callback(false);
 			}
 		});
+	},
+	insert : function(data, callback){
+		var sql = "INSERT INTO `post_info`(`post_id`, `user_id`, `post_type_id`, `post_status_id`) VALUES (?, ?, ?, ?)";
+		db.execute(sql, [data.post_id, data.user_id, data.post_type_id, data.post_status_id], function(status){
+			if(status){
+				callback(true);
+			}
+			else{
+				callback(false);
+			}
+		})
 	}
 }
