@@ -3,24 +3,31 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="../../../static/css/css/bootstrap.css">
         <link rel="stylesheet" href="../../../static/css/contentManager/home/index.css">
         <title>Homepage</title>
     </head>
     <body>
         <!-- navbar content start -->
-        <nav>
-            <div class="home">
-                <a href="">express</a>
-            </div>
-            <div class="menu">
-                <ul>
-                    <li><a href="/contentManager/profile/viewProfile">profile</a></li>
-                    <li><a href="/generalController/logout">logout</a></li>
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+            <a class="navbar-brand" href="#">express</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+          
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item">
+                    <a class="nav-link" href="/contentManager/profile/viewProfile"><%=user.username%> <span class="sr-only">(current)</span></a>
+                    </li>
+                    <li class="nav-item">
+                    <a class="nav-link" href="/generalController/logout">logout</a>
+                    </li>
                 </ul>
             </div>
         </nav>
         <!-- navbar content start -->
-        <h1>welcome content manager home<%=user.user_id%> <%=user.username%></h1>
+        <!-- <h1>welcome content manager home<%=user.user_id%> <%=user.username%></h1> -->
 
         <!-- functionality content start -->
         <section>

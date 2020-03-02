@@ -42,5 +42,25 @@ module.exports = {
 				callback(false);
 			}
 		})
+	},
+	getAllFromSearch : function(string, callback){
+		var sql = "select post_id, post_text from post_content where post_text like '%' ? '%'";
+		db.getResults(sql, [string], function(results){
+			if(results.length > 0){
+				callback(results);
+			}else{
+				callback([]);
+			}
+		});
+	},
+	getAllPost : function(callback){
+		var sql = "select post_id, post_text from post_content";
+		db.getResults(sql, null, function(results){
+			if(results.length > 0){
+				callback(results);
+			}else{
+				callback([]);
+			}
+		});
 	}
 }

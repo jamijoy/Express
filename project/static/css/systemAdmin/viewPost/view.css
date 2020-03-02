@@ -5,7 +5,7 @@
 }
 
 body{
-    background-color: #e7e7e7;
+    background-color: #949090;
 }
 
 a{
@@ -87,11 +87,10 @@ nav .menu ul li a{
     flex-basis: 20%;
 }
 
-.post{
+/* .post{
     padding: 20px;
     margin-bottom: 5px;
-    background-color: white;
-}
+} */
 
 .user{
     font-size: 22px;
@@ -103,3 +102,4 @@ nav .menu ul li a{
     background-color: #ffbb61;
     border-radius: 5px;
 }
+

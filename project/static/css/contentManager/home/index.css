@@ -79,6 +79,7 @@ section .row .col a{
 
 section .row .col a:hover{
     font-size: 33px;
+    text-decoration: none;
 }
 
 

@@ -27,6 +27,7 @@ var report = require('./controllers/accountManager/report');
 var contentManagerHome = require('./controllers/contentManager/home');
 var contentManagerProfile = require('./controllers/contentManager/profile');
 var contentRequest = require('./controllers/contentManager/contentRequest');
+var viewPost = require('./controllers/contentManager/viewPost');
 // *****content manager declaration*****
 
 // *****system admin declaration*****
@@ -77,6 +78,7 @@ app.use('/contentManager/createPost', contentManagerHome);
 app.use('/contentManager/sendMessage', contentManagerHome);
 app.use('/contentManager/viewPost', contentManagerHome);
 app.use('/contentManager/contentRequest', contentRequest);
+app.use('/contentManager/searchPost', viewPost);
 // *****content manager middleware end*****
 
 // *****user middleware  start*****

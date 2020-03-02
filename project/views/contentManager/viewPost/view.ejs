@@ -4,19 +4,60 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>view post page</title>
+    <script src="../../../static/js/lib/jquery-lib-min.js"></script>
+    <link rel="stylesheet" href="../../../static/css/css/bootstrap.css">
     <link rel="stylesheet" href="../../../static/css/contentManager/viewPost/view.css">
-    <link rel="stylesheet" href="../../../static/css/css/all.min.css">
+
+    <style>
+        .post-div{
+            margin: 10px;
+            padding: 20px;
+            background-color: #dfdfdf;
+        }
+    </style>
+    <script>
+        function searchWithKey(){
+            $(document).ready(function(){
+                $(".post").empty();
+                var str = $('#searchBar').val();
+                console.log('/contentManager/searchPost/search/'+str);
+                $.ajax({
+                    url: '/contentManager/searchPost/search/',
+                    type: 'POST',
+                    data: {
+                        value: str
+                    },
+                    success:(function(data){
+                        // console.log(data[0].post_text);
+                        var results = JSON.parse(data);
+                        for(var i = 0; i < results.length; i++){
+                            console.log(results[i].post_text);
+                            $('.post').append(
+                                "<div class='post-div'><h2>"+results[i].post_id+"</h2><p>"+results[i].post_text+"</p></div>"
+                            );
+                        }
+                    })
+                });
+            });
+        }
+    </script>
 </head>
-<body>
+<body onload="searchWithKey()">
     <!-- navbar content start -->
-    <nav>
-        <div class="home">
-            <a href="">express</a>
-        </div>
-        <div class="menu">
-            <ul>
-                <li><a href="/contentManager/home">home</a></li>
-                <li><a href="/generalController/logout">logout</a></li>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <a class="navbar-brand" href="#">express</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+      
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                <a class="nav-link" href="/contentManager/home">home <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item">
+                <a class="nav-link" href="/generalController/logout">logout</a>
+                </li>
             </ul>
         </div>
     </nav>
@@ -29,32 +70,15 @@
             <div class="col2">
                 <div class="search-container">
                     <form>
-                      <input type="text" placeholder="Search.." name="search" class="search">
-                      <button type="submit" class="submit"><i class="fa fa-search"></i></button>
+                      <input type="text" placeholder="Search.." name="search" onkeyup="searchWithKey()" id="searchBar" class="search">
                     </form>
                 </div>
-                <div class="post">
-                    <a href="#" class="user">user1</a>
-                    <span>public</span>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci, dignissimos amet. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci, dignissimos amet. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci, dignissimos amet.</p>
-                    <a href="#" class="delete">delete</a>
-                </div>
-                <div class="post">
-                    <a href="#" class="user">user2</a>
-                    <span>public</span>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci, dignissimos amet. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci, dignissimos amet. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci, dignissimos amet.</p>
-                    <a href="#" class="delete">delete</a>
-                </div>
-                <div class="post">
-                    <a href="#" class="user">user3</a>
-                    <span>public</span>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci, dignissimos amet. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci, dignissimos amet. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci, dignissimos amet.</p>
-                    <a href="#" class="delete">delete</a>
-                </div>
+                <div class="post"></div>
             </div>
             <div class="col3"></div>
         </div>
     </section>
     <!-- request post content end -->
+    <script src="../../../static/js/lib/jquery-lib-min.js"></script>
 </body>
 </html>
