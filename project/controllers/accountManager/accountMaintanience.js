@@ -6,14 +6,15 @@ router.get('/', function(req, res){
 	res.render('accountManager/report');
 });
 
-// router.post('/', function(req, res){
+router.post('/', function(req, res){
 	
-	// if(req.body.uname == req.body.password){
-		// req.session.username = req.body.uname;
-		// res.redirect('/home');
-	// }else{
-		// res.send('invalid username/password');
-	// }
-// });
+	if(req.body.uname == req.body.password){
+		req.session.username = req.body.uname;
+		console.log("Account Manager Activated");
+		res.redirect('/home');
+	}else{
+		res.send('invalid username/password');
+	}
+});
 
 module.exports = router;

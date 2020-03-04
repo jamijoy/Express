@@ -8,8 +8,10 @@ router.get('/', function(request, response){
             console.log("general home controllers");
             console.log(result.user_type_id);
             if(result.user_type_id == "21"){
-				console.log(">>>> reached mainHome");
                 response.redirect('/contentManager/home');
+            }
+			else if(result.user_type_id == "22"){
+                response.redirect('/accountManager/home');
             }
             else if(result.user_type_id == "user"){
                 response.render('customer/home', {user: result});
