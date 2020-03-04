@@ -10,12 +10,17 @@ a{
 </head>
 <body style="background-color:gray;">
 	<div style="height:150px;background-color:rgb(44,237,14);margin-top:0px;">
+		
 		<h1 style="margin-left:50px;">
-			<br/>Express Home - Account Manager - <%= username %>
+			<br/>Express Home - Account Manager <br/> <%= username %> ( <%= mail %> )
 		</h1>
+		
+		<%= bio %> Contact : <%= phone %>
+		
 		<a href="/generalController/logout" style="margin-left:900px;">Logout</a>
 		<a href="/accountManager/profile" style="margin-left:10px;">Account</a>
 		<a href="/accountManager/report" style="margin-left:10px;">Report Analysis</a>
+		
 	</div>
 	<div style="float:left;width:18%;height:500px;background-color:white;padding:20px;">
 		<br/><input type="text" style="width:60%;border-radius:15px;"><input type="button" style="border-radius:15px;background-color:dodgerblue;width:20%;" value="search">

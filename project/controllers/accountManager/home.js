@@ -1,12 +1,21 @@
 var express = require('express');
 var router = express.Router();
+var user_details = require.main.require('./models/user_details');
 
 router.get('/', function(req, res){
-	var data={
-		username: cookies['loginUserId']
-	}
-	console.log('home page requested!');
-	res.render('accountManager/home',data);
+	
+	user_details.getById(req.cookies['loginUserId'], function(result)
+	{
+		var data={
+		username: result.username,
+		mail: req.cookies['loginUserMail'],
+		phone: result.phone_number,
+		bio: result.bio,
+		}
+		
+		console.log('home page requested!');
+		res.render('accountManager/home',data);
+	});
 });
 
 // router.post('/', function(req, res){

@@ -40,19 +40,32 @@ router.post('/', function(request, response){
 		email: request.body.email,
 		password: request.body.password
     };
+	
     console.log(user.email, user.password);
+	
 	user_login.validate(user, function(status){
+		
 	 	if(status){
+			
 			console.log('successfully login with ');
+			
 			user_login.getByEmail(user.email, function(results){
-				console.log(results[0].user_id, results.length);
+				
 				if(results.length > 0){
-					console.log("1");
+					
+					// setting up Cookies
 					response.cookie('loginUserId', results[0].user_id);
+					response.cookie('loginUserMail', user.email);
+					
+					//just for value testing if its getting accurate data
 					var loginUserId = request.cookies['loginUserId'];
-					console.log('call for details of ', loginUserId);
+					console.log('Call for details of >> ', loginUserId);
+					
+					//Redirecting to the Main Home Section
 					response.redirect('/generalController/mainHome');
-				}else{
+				}
+				
+				else{
 					console.log("login page back");
 					response.redirect('/');
 				}
