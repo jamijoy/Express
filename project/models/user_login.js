@@ -5,7 +5,7 @@ module.exports = {
 		var sql ="SELECT * FROM user_login where email=? and password=?";
 		
 		db.getResults(sql, [user.email, user.password], function(results){
-			if(results.length > 0){
+			if(results.length == 1){
 				callback(true);
 			}else{
 				callback(false);
