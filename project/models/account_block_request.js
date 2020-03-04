@@ -10,5 +10,15 @@ module.exports = {
 				callback(false);
 			}
 		});
+	},
+	getAll:function(callback){
+		var sql = "select * from account_block_request";
+		db.getResults(sql, null, function(results){
+			if(results.length > 0){
+				callback(results);
+			}else{
+				callback(null);
+			}
+		});
 	}
 }
