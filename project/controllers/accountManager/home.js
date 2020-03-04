@@ -3,7 +3,7 @@ var router = express.Router();
 
 router.get('/', function(req, res){
 	var data={
-		username: req.session.username
+		username: cookies['loginUserId']
 	}
 	console.log('home page requested!');
 	res.render('accountManager/home',data);
