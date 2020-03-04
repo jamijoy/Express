@@ -16,7 +16,7 @@ a{
 			<br/>Express Home - Account Manager <br/> <%= data.username %> ( <%= data.mail %> )
 		</h1>
 		
-		<p style="margin-left:50px;"><%= data.bio %> Contact : <%= data.phone %></p>
+		<p style="margin-left:50px;"><span style="font-size:30px;">&#xFF02 </span><%= data.bio %> <span style="font-size:30px;">&#xFF02 </span> Contact : <%= data.phone %></p>
 		
 		<a href="/generalController/logout" style="margin-left:900px;">Logout</a>
 		<a href="/accountManager/profile" style="margin-left:10px;">Account</a>
@@ -31,7 +31,7 @@ a{
 		<br/>
 		
 		<% for(var i=0; i < resultList.length; i++){ %>	
-			<%= i+1 %> .&nbsp <a href="/accountManager/userAccountView<%= resultList[i].user_id %>"><%= resultList[i].username %></a><br/>
+			<%= i+1 %> .&nbsp <a href="/accountManager/userAccountView/<%= resultList[i].user_id %>"><%= resultList[i].username %></a><br/>
 		<% } %>
 		
 	</div>
@@ -69,14 +69,14 @@ a{
 		<center>
 			<br/>Notifications :
 			
-			
-			
-			<div style="width:90%;background-color:rgb(144,144,144);border-radius:15px;padding:15px">
-				Inactivity Found<br/>
-				12 Feb 2020, 08:40PM<br/>
-				Account inactivity Found, Please Review this, Account anonymous access platform<br/><br/>
-			</div>
-			
+			<% for(var i=0; i < block_req_list.length; i++){ %>	
+				<div style="width:90%;background-color:rgb(144,144,144);border-radius:15px;padding:15px">
+					<h4>Account Block Request</h4>
+					12 Feb 2020, 08:40PM<br/>
+					Account ID : <a href="/accountManager/userAccountView/<%= block_req_list[i].user_id %>"><%= block_req_list[i].user_id %></a> <br/>
+					| Status : <b><%= block_req_list[i].block_status %></b> | <br/><br/>
+				</div>
+			<% } %>			
 		</center>
 	</div>
 </body>

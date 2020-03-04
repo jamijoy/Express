@@ -31,18 +31,20 @@ router.get('/', function(req, res){
 		}
 	});
 	
-	block_req.getAll(function(results)
+	block_req.getAll(function(resultss)
 	{
-		block_req_list=results;
+		block_req_list=resultss;
+		
+		user_details.getAll(function(results)
+		{
+			console.log('home page requested!');
+			res.render('accountManager/home',{data,resultList:results,block_req_list});
+		});
 	});
 	
 	
 	
-	user_details.getAll(function(results)
-	{
-		console.log('home page requested!');
-		res.render('accountManager/home',{data,resultList:results,block_req_list});
-	});
+	
 	
 	
 });
