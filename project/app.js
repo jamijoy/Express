@@ -49,6 +49,7 @@ app.set('view engine', 'ejs');
 app.use(bodyParser.urlencoded({extended:true}));
 app.use(expSession({secret:'Hello Express', saveUninitialized: true, resave:false}));
 app.use('/static', express.static('static'));
+app.use('../../scFiles', express.static('static'));
 app.use(cookieParser());
 
 // *****general middleware  start*****

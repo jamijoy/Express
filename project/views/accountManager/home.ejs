@@ -1,35 +1,21 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
+
 <head>
-	<title>Feeds</title>
+<title>
+	Feeds
+</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script src="../../scFiles/js/lib/jquery-lib-min.js"></script>
+<script type="text/javascript" src="../../scFiles/script.js"></script>
+
 <style>
 a{
  text-decoration:none
 }
 </style>
-<script>
-        function searchText(){
-            $(document).ready(function(){
-                $(".post").empty();
-                var idVal = $('#searchText').val();
-                $.ajax({
-                    url: '/accountManager/home/search/',
-                    type: 'POST',
-                    data: {
-                        value: idVal,
-                    },
-                    success:(function(data){
-                        var results = JSON.parse(data);
-                        for(var i = 0; i < results.length; i++){
-                            $('.resultClass').append(
-                                "<div><h2>"+results[i].username+"</h2></div>"
-                            );
-                        }
-                    })
-                });
-            });
-        }
-    </script>
+
 </head>
 <body style="background-color:gray;">
 	
@@ -50,10 +36,9 @@ a{
 	<div style="float:left;width:18%;height:500px;background-color:white;padding:20px;">
 		
 		<br/>
+			<!-- <input type="text" style="padding:10px;border-radius:5px;border:2px;" placeholder="Search Account" id="searchID" name="searchText"> -->
+			<input type="text" onkeyup="alert('haaay there')" id="searchID" name="">
 			
-			<form>
-				<input type="text" style="padding:10px;border-radius:5px;border:2px;" placeholder="Search Account" name="searchText" id="searchText" onkeyup="searchText()">
-			</form>
 
 		<!--<input type="button" style="border-radius:15px;background-color:dodgerblue;width:20%;" value="search"> -->
 
