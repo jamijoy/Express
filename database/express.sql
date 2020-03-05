@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 01, 2020 at 06:21 PM
+-- Generation Time: Mar 05, 2020 at 09:05 AM
 -- Server version: 10.1.28-MariaDB
 -- PHP Version: 7.1.11
 
@@ -30,15 +30,16 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `account_block_request` (
   `user_id` int(5) NOT NULL,
-  `block_status` varchar(15) NOT NULL
+  `block_status` varchar(15) NOT NULL,
+  `req_time` varchar(30) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `account_block_request`
 --
 
-INSERT INTO `account_block_request` (`user_id`, `block_status`) VALUES
-(10003, 'pending');
+INSERT INTO `account_block_request` (`user_id`, `block_status`, `req_time`) VALUES
+(10003, 'pending', '3-3-2020 15:30');
 
 -- --------------------------------------------------------
 
@@ -95,7 +96,7 @@ CREATE TABLE `account_warning` (
 --
 
 INSERT INTO `account_warning` (`user_id`, `warning_count`) VALUES
-(10003, 1),
+(10003, 3),
 (10004, 1);
 
 -- --------------------------------------------------------
@@ -140,7 +141,9 @@ INSERT INTO `message_details` (`message_id`, `message_text`) VALUES
 (40012, 'your account was warned'),
 (40013, 'your account was warned'),
 (40014, 'your account was warned'),
-(40015, 'Your post request is canceled.');
+(40015, 'Your post request is canceled.'),
+(40016, 'your account was warned'),
+(40017, 'your account was warned');
 
 -- --------------------------------------------------------
 
@@ -152,24 +155,27 @@ CREATE TABLE `message_info` (
   `sender_id` int(5) NOT NULL,
   `receiver_id` int(5) NOT NULL,
   `message_id` int(5) NOT NULL,
-  `message_status_id` int(5) NOT NULL
+  `message_status_id` int(5) NOT NULL,
+  `msg_time` varchar(30) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `message_info`
 --
 
-INSERT INTO `message_info` (`sender_id`, `receiver_id`, `message_id`, `message_status_id`) VALUES
-(10001, 10003, 40006, 60),
-(10001, 10004, 40007, 60),
-(10001, 10004, 40008, 60),
-(10001, 10004, 40009, 60),
-(10001, 10004, 40010, 60),
-(10001, 10003, 40011, 60),
-(10001, 10003, 40012, 60),
-(10001, 10003, 40013, 60),
-(10001, 10004, 40014, 60),
-(10001, 10003, 40015, 60);
+INSERT INTO `message_info` (`sender_id`, `receiver_id`, `message_id`, `message_status_id`, `msg_time`) VALUES
+(10001, 10003, 40006, 60, ''),
+(10001, 10004, 40007, 60, ''),
+(10001, 10004, 40008, 60, ''),
+(10001, 10004, 40009, 60, ''),
+(10001, 10004, 40010, 60, ''),
+(10001, 10003, 40011, 60, ''),
+(10001, 10003, 40012, 60, ''),
+(10001, 10003, 40013, 60, ''),
+(10001, 10004, 40014, 60, ''),
+(10001, 10003, 40015, 60, ''),
+(10000, 10003, 40016, 60, ''),
+(10000, 10003, 40017, 60, '');
 
 -- --------------------------------------------------------
 
@@ -249,22 +255,23 @@ CREATE TABLE `post_info` (
   `post_id` int(5) NOT NULL,
   `user_id` int(5) NOT NULL,
   `post_type_id` int(5) NOT NULL,
-  `post_status_id` int(5) NOT NULL
+  `post_status_id` int(5) NOT NULL,
+  `post_time` varchar(30) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `post_info`
 --
 
-INSERT INTO `post_info` (`post_id`, `user_id`, `post_type_id`, `post_status_id`) VALUES
-(20000, 10003, 40, 51),
-(20002, 10003, 41, 50),
-(20003, 10003, 41, 51),
-(20004, 10003, 42, 50),
-(20005, 10004, 40, 51),
-(20006, 10004, 40, 51),
-(20008, 10004, 41, 51),
-(20009, 10004, 42, 51);
+INSERT INTO `post_info` (`post_id`, `user_id`, `post_type_id`, `post_status_id`, `post_time`) VALUES
+(20000, 10003, 40, 51, NULL),
+(20002, 10003, 41, 51, NULL),
+(20003, 10003, 41, 51, NULL),
+(20004, 10003, 42, 51, NULL),
+(20005, 10004, 40, 51, NULL),
+(20006, 10004, 40, 51, NULL),
+(20008, 10004, 41, 51, NULL),
+(20009, 10004, 42, 51, NULL);
 
 -- --------------------------------------------------------
 
@@ -343,7 +350,7 @@ CREATE TABLE `user_details` (
 INSERT INTO `user_details` (`user_id`, `username`, `phone_number`, `gender`, `birthdate`, `bio`, `profile_picture`, `user_type_id`, `account_type_id`, `account_status_id`) VALUES
 (10000, 'admin', NULL, 'male', NULL, NULL, NULL, 20, 31, 10),
 (10001, 'content manager', NULL, 'male', NULL, NULL, NULL, 21, 31, 10),
-(10002, 'account manager', NULL, 'male', NULL, NULL, NULL, 22, 31, 10),
+(10002, 'account manager', '01779611966', 'male', '20-03-1998', 'Prefers Convention Over Configuration.', NULL, 22, 31, 10),
 (10003, 'user1', NULL, 'male', NULL, NULL, NULL, 23, 31, 10),
 (10004, 'user2', NULL, 'female', NULL, NULL, NULL, 23, 31, 10);
 
@@ -389,7 +396,7 @@ CREATE TABLE `user_login` (
 INSERT INTO `user_login` (`user_id`, `email`, `password`) VALUES
 (10000, 'admin@gmail.com', 'admin'),
 (10001, 'content.manager@gmail.com', 'cm'),
-(10002, 'account.manager@gmail.com', 'am'),
+(10002, 'ac.manager@gmail.com', 'aa'),
 (10003, 'user1@gmail.com', 'user1'),
 (10004, 'user2@gmail.com', 'user2');
 
@@ -522,7 +529,7 @@ ALTER TABLE `following_status`
 -- AUTO_INCREMENT for table `message_details`
 --
 ALTER TABLE `message_details`
-  MODIFY `message_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=40016;
+  MODIFY `message_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=40018;
 
 --
 -- AUTO_INCREMENT for table `message_status`
