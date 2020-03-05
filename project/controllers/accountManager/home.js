@@ -49,6 +49,20 @@ router.get('/', function(req, res){
 	
 });
 
+router.post('/search', function(request, response){
+    
+	if(request.body.value !=""){
+        user_details.getBySearching(request.body.value, function(results){
+            response.send(JSON.stringify(results));
+        });
+    }
+    else if(request.body.value == ""){
+        user_details.getAll(function(results){
+            response.send(JSON.stringify(results));
+        });
+    }
+});
+
 // router.post('/', function(req, res){
 	
 	// if(req.body.uname == req.body.password){

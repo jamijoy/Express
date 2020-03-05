@@ -33,5 +33,15 @@ module.exports = {
 				callback(null);
 			}
 		});
-	}
+	},
+	getBySearching:function(callback){
+		var sql = "select * from user_details where username LIKE '%' ? '%'";
+		db.getResults(sql, null, function(results){
+			if(results.length > 0){
+				callback(results);
+			}else{
+				callback(null);
+			}
+		});
+	},
 }

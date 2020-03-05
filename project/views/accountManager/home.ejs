@@ -7,6 +7,29 @@ a{
  text-decoration:none
 }
 </style>
+<script>
+        function searchText(){
+            $(document).ready(function(){
+                $(".post").empty();
+                var idVal = $('#searchText').val();
+                $.ajax({
+                    url: '/accountManager/home/search/',
+                    type: 'POST',
+                    data: {
+                        value: idVal,
+                    },
+                    success:(function(data){
+                        var results = JSON.parse(data);
+                        for(var i = 0; i < results.length; i++){
+                            $('.resultClass').append(
+                                "<div><h2>"+results[i].username+"</h2></div>"
+                            );
+                        }
+                    })
+                });
+            });
+        }
+    </script>
 </head>
 <body style="background-color:gray;">
 	
@@ -26,13 +49,22 @@ a{
 	
 	<div style="float:left;width:18%;height:500px;background-color:white;padding:20px;">
 		
-		<br/><input type="text" style="width:60%;border-radius:15px;"><input type="button" style="border-radius:15px;background-color:dodgerblue;width:20%;" value="search">
+		<br/>
+			
+			<form>
+				<input type="text" style="padding:10px;border-radius:5px;border:2px;" placeholder="Search Account" name="searchText" id="searchText" onkeyup="searchText()">
+			</form>
+
+		<!--<input type="button" style="border-radius:15px;background-color:dodgerblue;width:20%;" value="search"> -->
+
 		<br/><br/>User Accounts :
 		<br/>
 		
 		<% for(var i=0; i < resultList.length; i++){ %>	
 			<%= i+1 %> .&nbsp <a href="/accountManager/userAccountView/<%= resultList[i].user_id %>"><%= resultList[i].username %></a><br/>
 		<% } %>
+		
+		<div class="resultClass"></div>
 		
 	</div>
 	
