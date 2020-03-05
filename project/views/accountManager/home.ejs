@@ -7,9 +7,36 @@
 </title>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<script src="../../scFiles/js/lib/jquery-lib-min.js"></script>
-<script type="text/javascript" src="../../scFiles/script.js"></script>
+<script src="../../static/js/lib/jquery-lib-min.js"></script>
+<script>
+function searchFunc(){
+	//alert("key up");
+	//console.log("key up");
+	$(document).ready(function(){
+	alert('haay');
+		$(".resultClass").empty();
+		var idVal = $('#searchID').val();
+		$.ajax({
+			url: '/accountManager/home/search/',
+			type: 'POST',
+			
+			data: {
+				value: idVal,
+			},
 
+			success: function(data){
+				var results = JSON.parse(data);
+				for(var i = 0; i < results.length; i++){
+					$('.resultClass').append(i);	
+				}
+			},
+			error: function(error){
+				alert(error.status);
+			}
+		});
+	});
+}
+	</script>
 <style>
 a{
  text-decoration:none
@@ -17,7 +44,7 @@ a{
 </style>
 
 </head>
-<body style="background-color:gray;">
+<body onload="searchFunc()" style="background-color:gray;">
 	
 	<div style="background-color:rgb(44,237,14);margin-top:0px;padding:20px;">
 		
@@ -37,17 +64,13 @@ a{
 		
 		<br/>
 			<!-- <input type="text" style="padding:10px;border-radius:5px;border:2px;" placeholder="Search Account" id="searchID" name="searchText"> -->
-			<input type="text" onkeyup="alert('haaay there')" id="searchID" name="">
+			<input type="text" onkeyup="searchFunc()" id="searchID" name="searchID">
 			
 
 		<!--<input type="button" style="border-radius:15px;background-color:dodgerblue;width:20%;" value="search"> -->
 
 		<br/><br/>User Accounts :
 		<br/>
-		
-		<% for(var i=0; i < resultList.length; i++){ %>	
-			<%= i+1 %> .&nbsp <a href="/accountManager/userAccountView/<%= resultList[i].user_id %>"><%= resultList[i].username %></a><br/>
-		<% } %>
 		
 		<div class="resultClass"></div>
 		

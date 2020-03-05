@@ -57,6 +57,7 @@ router.post('/search', function(request, response){
         });
     }
     else if(request.body.value == ""){
+		console.log("Empty value .........................................");
         user_details.getAll(function(results){
             response.send(JSON.stringify(results));
         });
