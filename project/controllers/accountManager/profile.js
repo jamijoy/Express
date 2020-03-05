@@ -1,12 +1,31 @@
 var express = require('express');
 var router = express.Router();
+var user_details = require.main.require('./models/user_details');
 
 router.get('/', function(req, res){
-	var data={
-		username : req.session.username
-	}
-	console.log('Profile page requested!');
-	res.render('accountManager/profile',data);
+	// var data={
+		// username: "",
+		// mail: "",
+		// phone: "",
+		// bio: "",
+		// dob: "",
+		// gender: "",
+	// }
+	
+	user_details.getById(req.cookies['loginUserId'], function(result)
+	{
+		data={
+		username: result.username,
+		mail: req.cookies['loginUserMail'],
+		phone: result.phone_number,
+		bio: result.bio,
+		dob: result.birthdate,
+		gender: result.gender
+		}
+		
+		console.log('Profile page requested!');
+		res.render('accountManager/profile',data);
+	});
 });
 
 // router.post('/', function(req, res){

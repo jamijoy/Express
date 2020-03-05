@@ -13,14 +13,15 @@
 	</div>
 
 	<div style="float:left;width:60%;height:500px;background-color:white;margin-left:200px;padding:20px">
-		<center><br/>
-			Profile information of - <%= username %> <hr>
-			Name : <%= username %><br/>
-			email : <%= username %>@express.com <br/>
-			Phone : 017XX XXXXXX<br/>
-			Username : <%= username %> <br/>
-			Gender : Male.<br/>
-			Birthdate: 30th Feb 2020.<br/><br/>
+		<br/>
+			Profile information of - <h3><%= data.username %></h3> <hr>
+			Name : <%= data.username %><br/>
+			email : <%= data.mail %> <br/>
+			Phone : <%= data.phone %><br/>
+			Username : <%= data.username %> <br/>
+			Gender : <%= data.gender %><br/>
+			Birthdate: <%= data.dob %><br/>
+			Bio: <p style="margin-left:50px;"><span style="font-size:30px;">&#xFF02 </span><%= data.bio %> <span style="font-size:30px;">&#xFF02 </span></p><br/><br/>
 			<a href="/accountManager/editProfile">Update Information</a>
 			<!--<input type="button" style="border-radius:15px;background-color:dodgerblue;" value="Edit Information">-->
 			<hr/>
@@ -42,7 +43,6 @@
 				Sample post writing..........<br/><br/>
 				29Likes * 3Comments
 			</div>
-		</center>
 	</div>
 
 </body>
