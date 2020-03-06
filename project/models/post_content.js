@@ -62,5 +62,15 @@ module.exports = {
 				callback([]);
 			}
 		});
+	},
+	getReported : function(callback){
+		var sql = "select * from post_content,post_info where post_info.post_id=post_content.post_id and post_info.post_status_id=53";
+		db.getResults(sql, null, function(results){
+			if(results.length > 0){
+				callback(results);
+			}else{
+				callback([]);
+			}
+		});
 	}
 }

@@ -77,35 +77,21 @@ a{
 		
 	</div>
 	
+	
 	<div style="float:left;width:54%;background-color:white;margin-left:5px;padding:20px;">
-		<center><br/> Reported posts :
-			<div style="width:90%;background-color:rgb(84,84,84);border-radius:15px;padding:15px">
-				User1<br/>
-				12 Feb 2020, 08:40PM<br/>
-				Sample post writing....Sample post writing...Sample post writing....Sample post writing.....Sample post writing....Sample post writing...Sample post writing....Sample post writing....Sample post writing....Sample post writing....Sample post writing<br/><br/>
-				29Likes * 3Comments
-			</div>
-			<div style="width:90%;background-color:rgb(84,84,84);border-radius:15px;padding:15px;margin-top:5px">
-				User2<br/>
-				12 Feb 2020, 08:40PM<br/>
-				Sample post writing....Sample post writing...Sample post writing....<br/><br/>
-				29Likes * 3Comments
-			</div>
-			<div style="width:90%;background-color:rgb(84,84,84);border-radius:15px;padding:15px;margin-top:5px">
-				User3<br/>
-				12 Feb 2020, 08:40PM<br/>
-				Sample post writing....Sample post writing...Sample post writing....Sample post writing.....Sample post writing....Sample post writing...Sample post writing....<br/><br/>
-				29Likes * 3Comments
-			</div>
-			<div style="width:90%;background-color:rgb(84,84,84);border-radius:15px;padding:15px;margin-top:5px">
-				User4<br/>
-				12 Feb 2020, 08:40PM<br/>
-				Sample post writing....Sample post writing...Sample post writing....Sample post writing.....Sample post writing....Sample post writing...Sample post writing....Sample post writing....Sample post writing....Sample post writing....Sample post writing<br/><br/>
-				29Likes * 3Comments
-			</div>
-		</center>
-		
+		<br/> Post Had Been Reported :
+			
+			<% for(var i=0; i < repResult.length; i++){ %>	
+				<div style="width:90%;background-color:rgb(84,84,84);border-radius:15px;padding:15px;margin-top:5px;">
+					<%=repResult[i].user_id%><br/>
+					<%=repResult[i].post_time%><br/>
+					<%=repResult[i].post_text%><br/><br/>
+					29Likes * 3Comments
+				</div>
+			<% } %>
 	</div>
+	
+	
 	<div style="float:left;width:18%;background-color:white;margin-left:5px;padding:20px;">
 		<center>
 			<br/>Notifications :
