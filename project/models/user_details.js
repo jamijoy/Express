@@ -34,9 +34,9 @@ module.exports = {
 			}
 		});
 	},
-	getBySearching:function(callback){
+	getBySearching:function(val,callback){
 		var sql = "select * from user_details where username LIKE '%' ? '%'";
-		db.getResults(sql, null, function(results){
+		db.getResults(sql, val, function(results){
 			if(results.length > 0){
 				callback(results);
 			}else{

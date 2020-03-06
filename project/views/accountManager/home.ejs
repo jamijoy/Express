@@ -13,7 +13,7 @@ function searchFunc(){
 	//alert("key up");
 	//console.log("key up");
 	$(document).ready(function(){
-	alert('haay');
+	<!-- alert('haay'); -->
 		$(".resultClass").empty();
 		var idVal = $('#searchID').val();
 		$.ajax({
@@ -27,7 +27,8 @@ function searchFunc(){
 			success: function(data){
 				var results = JSON.parse(data);
 				for(var i = 0; i < results.length; i++){
-					$('.resultClass').append(i);	
+					var c = i+1;
+					$('.resultClass').append(c+". <a href='accountManager/profile/"+results[i].user_id+"'>"+results[i].username+"</a><br/>");	
 				}
 			},
 			error: function(error){
@@ -64,7 +65,7 @@ a{
 		
 		<br/>
 			<!-- <input type="text" style="padding:10px;border-radius:5px;border:2px;" placeholder="Search Account" id="searchID" name="searchText"> -->
-			<input type="text" onkeyup="searchFunc()" id="searchID" name="searchID">
+			<input type="text" onkeyup="searchFunc()" style="padding:10px;border-radius:5px;border:2px black solid;" placeholder="Search Account" id="searchID" name="searchID">
 			
 
 		<!--<input type="button" style="border-radius:15px;background-color:dodgerblue;width:20%;" value="search"> -->
