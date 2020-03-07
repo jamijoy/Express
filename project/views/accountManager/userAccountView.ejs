@@ -20,29 +20,18 @@
 			Phone : <%= data.phone %><br/>
 			Gender : <%= data.gender %><br/>
 			Birthdate: <%= data.dob %><br/>
-			<p style="margin-left:50px;"><span style="font-size:30px;">&#xFF02 </span><%= data.bio %> <span style="font-size:30px;">&#xFF02 </span></p><br/><br/>
-			<!--<input type="button" style="border-radius:15px;background-color:dodgerblue;" value="Edit Information">-->
+			<p style="margin-left:50px;"><span style="font-size:30px;">&#xFF02 </span><%= data.bio %> <span style="font-size:30px;">&#xFF02 </span></p>
 			<hr/>
-		
+			<br/> Posts from users timeline:<br/><br/>
 		<center>
-			<div style="width:90%;background-color:rgb(84,84,84);border-radius:15px;padding:15px">
-				Username<br/>
-				12 Feb 2020, 08:40PM<br/>
-				Sample post writing..........<br/><br/>
-				29Likes * 3Comments
-			</div>
-			<div style="width:90%;background-color:rgb(84,84,84);border-radius:15px;padding:15px;margin-top:5px;">
-				Username<br/>
-				12 Feb 2020, 08:40PM<br/>
-				Sample post writing..........<br/><br/>
-				29Likes * 3Comments
-			</div>
-			<div style="width:90%;background-color:rgb(84,84,84);border-radius:15px;padding:15px;margin-top:5px;">
-				Username<br/>
-				12 Feb 2020, 08:40PM<br/>
-				Sample post writing..........<br/><br/>
-				29Likes * 3Comments
-			</div>
+			<% for(var i=0; i < contentData.length; i++){ %>
+				<div style="width:90%;background-color:rgb(84,84,84);border-radius:15px;padding:15px;text-align:left;margin-top:5px;">
+					<%= contentData[i].user_id %> | <%= contentData[i].post_type_id %> | <%= contentData[i].post_status_id %><br/>
+					<%= contentData[i].post_time %><br/>
+					<%= contentData[i].post_text %><br/><br/>
+					29Likes * 3Comments
+				</div>
+			<% } %>
 		</center>
 	</div>
 	<div style="float:right;width:25%;height:500px;background-color:white;margin-right:50px;padding:20px">

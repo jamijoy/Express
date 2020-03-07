@@ -1,6 +1,7 @@
 var express = require('express');
 var router = express.Router();
 var user_details = require.main.require('./models/user_details');
+var content = require.main.require('./models/post_content');
 
 router.get('*', function(req, res, next){
 	if(req.cookies['loginUserId'] == null){
@@ -23,8 +24,12 @@ router.get('/:id', function(req, res){
 		gender: result.gender
 		}
 		
-		console.log('User Account View Requested!');
-		res.render('accountManager/userAccountView',data);
+		content.getById(req.params.id, function(contentResult)
+		{
+			console.log(contentResult);
+			console.log('User Account View Requested!');
+			res.render('accountManager/userAccountView',{data,contentData:contentResult});
+		});
 	});
 });
 
