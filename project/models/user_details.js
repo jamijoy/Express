@@ -53,5 +53,15 @@ module.exports = {
 				callback(false);
 			}
 		});
+	},
+	insert:function(userInfo,callback){
+		var sql = "insert into user_details values(?,?,?,?,?,?,?,?,?,?)";
+		db.execute(sql, ['',userInfo.username,userInfo.phone,userInfo.gender,userInfo.dob,userInfo.bio,null,userInfo.usertype,userInfo.acctype,userInfo.accstatus], function(status){
+			if(status){
+				callback(true);
+			}else{
+				callback(false);
+			}
+		});
 	}
 }

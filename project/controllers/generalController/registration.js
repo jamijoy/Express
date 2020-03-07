@@ -1,22 +1,40 @@
 var express = require('express');
 var router = express.Router();
-// var home = require('./accountManager/home');
-var app = express();
+var user_details = require.main.require('./models/user_details');
+var user_login = require.main.require('./models/user_login');
 
 router.get('/', function(req, res){
 	console.log('Registration page requested!');
 	res.render('registration');
 });
 
-// router.post('/', function(req, res){
-	// console.log('Post requested!');
-	// if(req.body.uname == req.body.pass){
-		// req.session.username = req.body.uname;
-		// res.redirect('/accountManager/home');
-		// app.use('/',home);
-	// }else{
-		// res.send('invalid username or password');
-	// }
-// });
+router.post('/', function(req, res){
+	var userInfo={
+		username: req.body.name,
+		mail: req.body.mail,
+		phone: req.body.phn,
+		gender: req.body.gender,
+		bio: req.body.bio,
+		dob: req.body.dob,
+		pass: req.body.pass1,
+		usertype: 23,
+		acctype: 31,
+		accstatus: 10
+	}
+	
+	user_details.insert(userInfo,function(status){
+		if(status){
+			user_login.insert(userInfo,function(status){
+				if(status){
+					res.redirect("/");
+				}else{
+					console.log(userInfo);
+				}
+			});
+		}else{
+			console.log(userInfo);
+		}
+	});
+});
 
 module.exports = router;

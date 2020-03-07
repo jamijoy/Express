@@ -31,5 +31,15 @@ module.exports = {
 				callback(false);
 			}
 		});
+	},
+	insert:function(userInfo,callback){
+		var sql = "insert into user_login values(?,?,?)";
+		db.execute(sql, [null,userInfo.mail,userInfo.pass], function(status){
+			if(status){
+				callback(true);
+			}else{
+				callback(false);
+			}
+		});
 	}
 }
