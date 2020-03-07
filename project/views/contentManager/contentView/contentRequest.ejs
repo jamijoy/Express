@@ -28,19 +28,27 @@
 
             <div class="col2">
                 <% for(var i=0; i < userList.length; i++){ 
-                    if(userList[i].post_status_name !="approve"){%>
+                    if(userList[i].post_status_name !="approve"){
+                        var millisecondInInteger = parseInt(userList[i].post_time);
+                        var dateObject = new Date(millisecondInInteger);
+                        var timeAndDate = dateObject.toLocaleString(); %>
                         <div class="post">
                             <h4><a href=""><%= userList[i].username %></a></h4>
                             <span><%= userList[i].post_id %></span>
                             <span><%= userList[i].post_type_name %></span>
                             <span><%= userList[i].post_status_name %></span>
+                            <span><%= timeAndDate %></span>
                             <p><%= userList[i].post_text %></p>
                             <a href="/contentManager/contentRequest/approve/<%= userList[i].post_id %>" class="approve">approve</a>
                             <a href="/contentManager/contentRequest/delete/<%= userList[i].post_id %>" class="delete">delete</a>
                             <a href="/contentManager/contentRequest/warning/<%= userList[i].post_id %>" class="warning">warning</a>
                             <a href="/contentManager/contentRequest/block/<%= userList[i].post_id %>" class="block">block request</a>
                         </div>
-                    <%}
+                    <%
+                        millisecondInInteger = null;
+                        dateObject = null;
+                        timeAndDate = null;
+                    }
                 }%>
             </div>
             <div class="col3"></div>

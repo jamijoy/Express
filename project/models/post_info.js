@@ -43,8 +43,11 @@ module.exports = {
 		});
 	},
 	insert : function(data, callback){
-		var sql = "INSERT INTO `post_info`(`post_id`, `user_id`, `post_type_id`, `post_status_id`) VALUES (?, ?, ?, ?)";
-		db.execute(sql, [data.post_id, data.user_id, data.post_type_id, data.post_status_id], function(status){
+		var d = new Date();
+		var millisecond = d.getTime();
+		var d = null;
+		var sql = "INSERT INTO `post_info`(`post_id`, `user_id`, `post_type_id`, `post_status_id`, `post_time`) VALUES (?, ?, ?, ?, ?)";
+		db.execute(sql, [data.post_id, data.user_id, data.post_type_id, data.post_status_id, millisecond], function(status){
 			if(status){
 				callback(true);
 			}
