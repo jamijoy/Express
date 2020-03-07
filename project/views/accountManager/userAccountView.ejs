@@ -1,28 +1,30 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>User Profile - Express</title>
+	<title><%= data.username %> - Express</title>
 </head>
 <body style="background-color:gray;">
 	<div style="height:150px;background-color:rgb(44,237,14);margin-top:0px;">
 		<h1 style="margin-left:50px;">
-			<br/>User Profile - Express
+			<br/><%= data.username %> - Express
 		</h1>
 		<a href="/generalController/logout" style="margin-left:900px;">Logout</a>
 		<a href="/accountManager/home" style="margin-left:10px;">Back</a>
 	</div>
 
 	<div style="float:left;width:60%;background-color:white;margin-left:50px;padding:20px">
-		<center><br/>
-			Profile information of - User1 <hr>
-			Name : Full name<br/>
-			email : mail@express.com <br/>
-			Phone : 017XX XXXXXX<br/>
-			Username : username <br/>
-			Gender : Male.<br/>
-			Birthdate: 30th Feb 2020.<br/><br/>
+		<br/>
+			<%= data.username %> (<%= data.userid %>) <hr>
+			Name : <%= data.username %><br/>
+			Username : <%= data.username %> <br/>
+			Phone : <%= data.phone %><br/>
+			Gender : <%= data.gender %><br/>
+			Birthdate: <%= data.dob %><br/>
+			<p style="margin-left:50px;"><span style="font-size:30px;">&#xFF02 </span><%= data.bio %> <span style="font-size:30px;">&#xFF02 </span></p><br/><br/>
 			<!--<input type="button" style="border-radius:15px;background-color:dodgerblue;" value="Edit Information">-->
 			<hr/>
+		
+		<center>
 			<div style="width:90%;background-color:rgb(84,84,84);border-radius:15px;padding:15px">
 				Username<br/>
 				12 Feb 2020, 08:40PM<br/>

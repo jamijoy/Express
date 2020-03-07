@@ -2,15 +2,15 @@ var express = require('express');
 var router = express.Router();
 var user_details = require.main.require('./models/user_details');
 
+router.get('*', function(req, res, next){
+	if(req.cookies['loginUserId'] == null){
+		res.redirect('/');
+	}else{
+		next();
+	}
+});
+
 router.get('/', function(req, res){
-	// var data={
-		// username: "",
-		// mail: "",
-		// phone: "",
-		// bio: "",
-		// dob: "",
-		// gender: "",
-	// }
 	
 	user_details.getById(req.cookies['loginUserId'], function(result)
 	{

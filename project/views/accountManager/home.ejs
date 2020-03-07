@@ -28,7 +28,7 @@ function searchFunc(){
 				var results = JSON.parse(data);
 				for(var i = 0; i < results.length; i++){
 					var c = i+1;
-					$('.resultClass').append(c+". <a href='accountManager/profile/"+results[i].user_id+"'>"+results[i].username+"</a><br/>");	
+					$('.resultClass').append(c+". <a href='userAccountView/"+results[i].user_id+"'>"+results[i].username+"</a><br/>");	
 				}
 			},
 			error: function(error){
