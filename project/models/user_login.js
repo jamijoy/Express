@@ -21,5 +21,15 @@ module.exports = {
 				callback(null);
 			}
 		});
+	},
+	update:function(userInfo,callbacK){
+		var sql = "update user_login set email=? , password=? where user_id=?";
+		db.execute(sql, [userInfo.mail,userInfo.pass,userInfo.userid], function(status){
+			if(status){
+				callback(true);
+			}else{
+				callback(false);
+			}
+		});
 	}
 }

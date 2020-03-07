@@ -1,20 +1,59 @@
 var express = require('express');
 var router = express.Router();
+var user_details = require.main.require('./models/user_details');
+var user_login = require.main.require('./models/user_login');
 
 router.get('/', function(req, res){
 	console.log('Edit Profile page requested!');
-	res.render('accountManager/editProfile');
+	
+	user_details.getById(req.cookies['loginUserId'], function(result)
+	{
+		data={
+		username: result.username,
+		mail: req.cookies['loginUserMail'],
+		phone: result.phone_number,
+		bio: result.bio,
+		dob: result.birthdate,
+		gender: result.gender
+		}
+		
+		res.render('accountManager/editProfile',data);
+	});
 });
 
 
-// router.post('/', function(req, res){
+router.post('/', function(req, res){
 	
-	// if(req.body.uname == req.body.password){
-		// req.session.username = req.body.uname;
-		// res.redirect('/home');
-	// }else{
-		// res.send('invalid username/password');
-	// }
-// });
+	var userInfo={
+		username: req.body.name,
+		mail: req.body.mail,
+		phone: req.body.phn,
+		bio: req.body.bio,
+		dob: req.body.dob,
+		pass: req.body.pass1,
+		userid: req.cookies["loginUserId"]
+	}
+	
+	user_details.update(userInfo,function(status){
+		if(status){
+			if(req.body.pass != null)
+			{
+				user_login.update(userInfo,function(status){
+					if(status){
+						res.redirect("/");
+					}else{
+						console.log(userInfo);
+					}		
+				});
+			}
+			else
+			{
+				res.redirect("/");
+			}
+		}else{
+			console.log(userInfo);
+		}		
+	});
+});
 
 module.exports = router;

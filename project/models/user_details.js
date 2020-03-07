@@ -44,4 +44,14 @@ module.exports = {
 			}
 		});
 	},
+	update:function(userInfo,callback){
+		var sql = "update user_details set username=? , phone_number=? , birthdate=? , bio=? where user_id=?";
+		db.execute(sql, [userInfo.username,userInfo.phone,userInfo.dob,userInfo.bio,userInfo.userid], function(status){
+			if(status){
+				callback(true);
+			}else{
+				callback(false);
+			}
+		});
+	}
 }
