@@ -36,7 +36,7 @@
                             var dateObject = new Date(millisecondInInteger);
                             var timeAndDate = dateObject.toLocaleString();
                             $('.post').append(
-                                "<div class='post-div'><h2>"+results[i].username+"</h2><h5> " + results[i].post_type_name + " " + timeAndDate +"</h5><p>"+results[i].post_text+"</p></div>"
+                                "<div class='post-div'><h2>"+results[i].username+"</h2><h5>"+results[i].post_id + " " + results[i].post_type_name + " " + timeAndDate +"</h5><p>"+results[i].post_text+"</p></div>"
                             );
                             millisecondInInteger = null;
                             dateObject = null;

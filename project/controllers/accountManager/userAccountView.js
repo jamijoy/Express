@@ -21,14 +21,23 @@ router.get('/:id', function(req, res){
 		phone: result.phone_number,
 		bio: result.bio,
 		dob: result.birthdate,
-		gender: result.gender
+		gender: result.gender,
+		usertype: result.user_type_id,
+		acctype: result.account_type_id,
+		accstatus: result.account_status_id
 		}
 		
-		content.getById(req.params.id, function(contentResult)
+		content.getLikeById(req.params.id, function(countres)
 		{
-			console.log(contentResult);
-			console.log('User Account View Requested!');
-			res.render('accountManager/userAccountView',{data,contentData:contentResult});
+			var rest = countres;
+			console.log(countres);
+			content.getById(req.params.id, function(contentResult)
+			{
+				
+				//console.log(contentResult);
+				console.log('User Account View Requested!');
+				res.render('accountManager/userAccountView',{data,contentData:contentResult,rest});
+			});
 		});
 	});
 });

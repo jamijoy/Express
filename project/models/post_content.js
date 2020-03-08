@@ -82,5 +82,25 @@ module.exports = {
 				callback([]);
 			}
 		});
+	},
+	getLikeComment : function(callback){
+		var sql = "select count(*) as res from post_info,post_like where post_info.post_id=post_like.post_id and post_info.post_status_id=53 group by post_like.post_id";
+		db.getResults(sql, null , function(results){
+			if(results.length > 0){
+				callback(results);
+			}else{
+				callback([]);
+			}
+		});
+	},
+	getLikeById : function(id,callback){
+		var sql = "SELECT count(*) as res FROM post_like,post_info WHERE post_like.post_id=post_info.post_id and post_info.user_id="+id;
+		db.getResults(sql, [id] , function(results){
+			if(results.length > 0){
+				callback(results);
+			}else{
+				callback([]);
+			}
+		});
 	}
 }

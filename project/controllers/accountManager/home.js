@@ -32,20 +32,25 @@ router.get('/', function(req, res){
 		}
 	});
 	
-	content.getReported(function(reportedResult)
+	content.getLikeComment(function(countResult)
 	{
-		repResult = reportedResult;
-		block_req.getAll(function(resultss)
+		var countRes = countResult;
+		// console.log("like count >> "+countResult[1].res);
+		content.getReported(function(reportedResult)
 		{
-			block_req_list=resultss;
-			
-			user_details.getAll(function(results)
+			repResult = reportedResult;
+			block_req.getAll(function(resultss)
 			{
-				console.log('home page requested!');
-				res.render('accountManager/home',{data,resultList:results,block_req_list,repResult});
+				block_req_list=resultss;
+				
+				user_details.getAll(function(results)
+				{
+					console.log('home page requested!');
+					res.render('accountManager/home',{data,resultList:results,block_req_list,repResult,countRes});
+				});
 			});
-		});
-	});	
+		});	
+	});
 });
 
 router.post('/search', function(request, response){
