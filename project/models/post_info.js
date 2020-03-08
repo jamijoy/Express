@@ -12,7 +12,7 @@ module.exports = {
 			}
 		});
     },
-    statusUpdate : function(post_id, callback){
+    statusUpdate : function(post_id, callback){``
 		var sql = "UPDATE `post_info` SET `post_status_id`= (SELECT post_status_id from post_status WHERE post_status.post_status_name = 'approve') WHERE post_id = ?";
 		db.execute(sql, [post_id], function(status){
 			if(status){

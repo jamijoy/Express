@@ -28,6 +28,7 @@ var contentManagerHome = require('./controllers/contentManager/home');
 var contentManagerProfile = require('./controllers/contentManager/profile');
 var contentRequest = require('./controllers/contentManager/contentRequest');
 var viewPost = require('./controllers/contentManager/viewPost');
+var report = require('./controllers/contentManager/report');
 // *****content manager declaration*****
 
 // *****system admin declaration*****
@@ -74,7 +75,8 @@ app.use('/contentManager/profile', contentManagerHome);
 app.use('/contentManager/contentView', contentManagerHome);
 app.use('/contentManager/profile', contentManagerProfile);
 app.use('/contentManager/search', contentManagerHome);
-app.use('/contentManager/reportAnalysis', contentManagerHome);
+app.use('/contentManager/report', contentManagerHome);
+app.use('/contentManager/reportAnalysis', report);
 app.use('/contentManager/createPost', contentManagerHome);
 app.use('/contentManager/sendMessage', contentManagerHome);
 app.use('/contentManager/viewPost', contentManagerHome);
@@ -82,7 +84,7 @@ app.use('/contentManager/contentRequest', contentRequest);
 app.use('/contentManager/searchPost', viewPost);
 // *****content manager middleware end*****
 
-// *****user middleware  start*****
+// *****admin middleware  start*****
 app.use('/systemAdmin/home', systemAdminHome);
 app.use('/systemAdmin/profile', systemAdminHome);
 app.use('/systemAdmin/contentView', systemAdminHome);
@@ -95,7 +97,7 @@ app.use('/systemAdmin/registerManager', registerManager);
 app.use('/systemAdmin/userAccountView', userAccountView2);
 app.use('/systemAdmin/registerManager', registerManager);
 app.use('/systemAdmin/userAccountView', userAccountView2);
-// *****user middleware end*****
+// *****admin middleware end*****
 
 // middleware end
 

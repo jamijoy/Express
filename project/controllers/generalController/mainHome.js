@@ -8,8 +8,8 @@ router.get('/', function(request, response){
 		
 		user_details.getById(request.cookies['loginUserId'], function(result){
             
-			console.log("general home controllers");
-            console.log(result.user_type_id);
+			// console.log("general home controllers");
+            // console.log(result.user_type_id);
             
 			if(result.user_type_id == "21"){
                 response.redirect('/contentManager/home');
@@ -17,8 +17,9 @@ router.get('/', function(request, response){
 			else if(result.user_type_id == "22"){
                 response.redirect('/accountManager/home');
             }
-            else if(result.user_type_id == "user"){
-                response.render('customer/home', {user: result});
+            else if(result.user_type_id == "23"){
+				// response.render('');
+				response.send("user ok");
             }
 			
 		});

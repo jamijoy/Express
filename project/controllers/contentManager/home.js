@@ -33,8 +33,8 @@ router.get('/contentRequest', function(request, response){
 });
 
 router.get('/report', function(request, response){
-    console.log('content manager report analysis page requested with get method!');
-    response.render('contentManager/reportAnalysis/report');
+    console.log('from home.js');
+    response.redirect('/contentManager/reportAnalysis/report');
 });
 
 router.get('/createPost', function(request, response){
