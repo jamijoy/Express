@@ -87,7 +87,7 @@ app.use('/contentManager/report',contentManagerReport);
 // *****user middleware  start*****
 app.use('/systemAdmin/home', systemAdminHome);
 app.use('/systemAdmin/profile', systemAdminHome);
-app.use('/systemAdmin/contentView', systemAdminHome);
+app.use('/systemAdmin/register', systemAdminHome);
 app.use('/systemAdmin/search', systemAdminHome);
 app.use('/systemAdmin/reportAnalysis', systemAdminHome);
 app.use('/systemAdmin/createPost', systemAdminHome);
