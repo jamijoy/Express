@@ -8,6 +8,16 @@ router.get('/', function(req, res){
 	res.render('registration');
 });
 
+router.post('/checkMail', function(req, res){
+	console.log('Registration email check requested!');
+	user_login.getEmail(function(results){
+		if(results.length > 0){
+			res.send(JSON.stringify(results));
+		}
+	});
+	// JSON.stringify(results)
+});
+
 router.post('/', function(req, res){
 	user_login.getNextId(function(nextId){
 		if(nextId.length > 0){
@@ -24,19 +34,19 @@ router.post('/', function(req, res){
 				acctype: 31,
 				accstatus: 10
 			}
-			user_details.insert(userInfo,function(status){
-				if(status){
-					user_login.insert(userInfo,function(status){
-						if(status){
-							res.redirect("/");
-						}else{
-							console.log(userInfo);
-						}
-					});
-				}else{
-					console.log(userInfo);
-				}
-			});
+			// user_details.insert(userInfo,function(status){
+			// 	if(status){
+			// 		user_login.insert(userInfo,function(status){
+			// 			if(status){
+			// 				res.redirect("/");
+			// 			}else{
+			// 				console.log(userInfo);
+			// 			}
+			// 		});
+			// 	}else{
+			// 		console.log(userInfo);
+			// 	}
+			// });
 		}
 		else{
 			console.log("error user id");

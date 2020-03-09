@@ -22,6 +22,16 @@ module.exports = {
 			}
 		});
 	},
+	getEmail : function(callback){
+		var sql = "select email from user_login";
+		db.getResults(sql, null, function(results){
+			if(results.length > 0){
+				callback(results);
+			}else{
+				callback(null);
+			}
+		});
+	},
 	update:function(userInfo,callback){
 		var sql = "update user_login set email=? , password=? where user_id=?";
 		db.execute(sql, [userInfo.email, userInfo.password,userInfo.user_id], function(status){
