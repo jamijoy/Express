@@ -3,6 +3,14 @@ var user_details = require.main.require('./models/user_details');
 var post_join = require.main.require('./models/post_join');
 var router = express.Router();
 
+router.get('*', function(req, res, next){
+	if(req.cookies['loginUserId'] == null){
+		res.redirect('/');
+	}else{
+		next();
+	}
+});
+
 router.get('/', function(request, response){
     console.log('content manager home page requested with get method!');
     user_details.getById(request.cookies['loginUserId'], function(result){
@@ -13,7 +21,10 @@ router.get('/', function(request, response){
 
 router.get('/viewProfile', function(request, response){
     console.log('content manager profile page requested with get method!');
-    response.render('contentManager/profile/viewProfile');
+    user_details.getAllInfo(request.cookies['loginUserId'], function(results){
+        console.log(results);
+        response.render('contentManager/profile/viewProfile', {user: results});
+    });
 });
 
 router.get('/index', function(request, response){

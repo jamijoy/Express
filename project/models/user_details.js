@@ -23,6 +23,16 @@ module.exports = {
 			}
 		});
 	},
+	getAllInfo:function(user_id,callback){
+		var sql = "SELECT * FROM user_login, user_details WHERE user_login.user_id = user_details.user_id AND user_login.user_id = ?";
+		db.getResults(sql, user_id, function(results){
+			if(results.length > 0){
+				callback(results[0]);
+			}else{
+				callback(null);
+			}
+		});
+	},
 	getUserType : function(user_id, callback){
 		var sql = "SELECT user_type.user_type_name FROM user_details, user_type WHERE user_details.user_type_id = user_type.user_type_id AND user_details.user_id = ?";
 		db.getResults(sql, [user_id], function(result){
@@ -45,8 +55,8 @@ module.exports = {
 		});
 	},
 	update:function(userInfo,callback){
-		var sql = "update user_details set username=? , phone_number=? , birthdate=? , bio=? where user_id=?";
-		db.execute(sql, [userInfo.username,userInfo.phone,userInfo.dob,userInfo.bio,userInfo.userid], function(status){
+		var sql = "update user_details set username=? , firstname=?, lastname=?, phone_number=? , birthdate=? , bio=?, website=?, address=? where user_id=?";
+		db.execute(sql, [userInfo.username, userInfo.firstName, userInfo.lastName, userInfo.phone_number, userInfo.dob, userInfo.bio, userInfo.website, userInfo.address, userInfo.user_id], function(status){
 			if(status){
 				callback(true);
 			}else{
@@ -55,8 +65,8 @@ module.exports = {
 		});
 	},
 	insert:function(userInfo,callback){
-		var sql = "insert into user_details values(?,?,?,?,?,?,?,?,?,?)";
-		db.execute(sql, ['',userInfo.username,userInfo.phone,userInfo.gender,userInfo.dob,userInfo.bio,null,userInfo.usertype,userInfo.acctype,userInfo.accstatus], function(status){
+		var sql = "insert into user_details(`user_id`, `username`, `phone_number`, `gender`, `birthdate`, `bio`, `user_type_id`, `account_type_id`, `account_status_id`) values(?,?,?,?,?,?,?,?,?)";
+		db.execute(sql, [userInfo.user_id,userInfo.username,userInfo.phone,userInfo.gender,userInfo.dob,userInfo.bio,userInfo.usertype,userInfo.acctype,userInfo.accstatus], function(status){
 			if(status){
 				callback(true);
 			}else{

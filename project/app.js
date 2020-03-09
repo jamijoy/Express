@@ -5,11 +5,10 @@ var ejs = require('ejs');
 var bodyParser = require('body-parser');
 var cookieParser = require('cookie-parser');
 var mySql = require('mysql');
-
+var app = express();
 
 //Instance
 var app = express();
-
 
 // *****general declaration*****
 var login = require('./controllers/generalController/login');
@@ -32,6 +31,7 @@ var contentManagerHome = require('./controllers/contentManager/home');
 var contentManagerProfile = require('./controllers/contentManager/profile');
 var contentRequest = require('./controllers/contentManager/contentRequest');
 var viewPost = require('./controllers/contentManager/viewPost');
+var contentManagerReport = require('./controllers/contentManager/report');
 // *****content manager declaration*****
 
 // *****system admin declaration*****
@@ -39,7 +39,6 @@ var systemAdminHome = require('./controllers/systemAdmin/home');
 var registerManager = require('./controllers/systemAdmin/registerManager');
 var userAccountView2 = require('./controllers/systemAdmin/userAccountView');
 // *****system admin declaration*****
-
 
 // *****user declaration*****
 var userHome = require('./controllers/user/home');
@@ -50,28 +49,20 @@ var userLogout = require('./controllers/user/logout');
 
 // declaration end
 
-
-
 // configuration start
 app.set('view engine', 'ejs');
 // configuration end
 
-
-
 // middleware start
-
-//Third Party
 app.use(bodyParser.urlencoded({extended:true}));
-app.use(cookieParser());
 app.use(expSession({secret:'Hello Express', saveUninitialized: true, resave:false}));
-
-//Static
 app.use('/static', express.static('static'));
 app.use('../../scFiles', express.static('static'));
+app.use(cookieParser());
+
 app.use('/assets', express.static('assets'));
 app.use('/home/assets', express.static('assets'));
 app.use('/:username/assets', express.static('assets'));
-
 
 // *****general middleware  start*****
 app.use('/', login);
@@ -101,16 +92,14 @@ app.use('/contentManager/sendMessage', contentManagerHome);
 app.use('/contentManager/viewPost', contentManagerHome);
 app.use('/contentManager/contentRequest', contentRequest);
 app.use('/contentManager/searchPost', viewPost);
+app.use('/contentManager/report',contentManagerReport);
 // *****content manager middleware end*****
 
 // *****user middleware  start*****
-
-//Controllers
 app.use('/home', userHome);
 app.use('/login', userLogin);
 app.use('/logout', userLogout);
 app.use('/:username', userProfile);
-
 // *****user middleware end*****
 
 // middleware end

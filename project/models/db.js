@@ -36,7 +36,6 @@ module.exports ={
 			}
 			else{
 				connection.query(sql , function (error, results) {
-					console.log(error);
 					if(results == null){
 						callback(null);
 					}
