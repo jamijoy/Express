@@ -2,14 +2,6 @@ var express = require('express');
 var post_content = require.main.require('./models/post_content');
 var router = express.Router();
 
-router.get('*', function(req, res, next){
-	if(req.cookies['loginUserId'] == null){
-		res.redirect('/');
-	}else{
-		next();
-	}
-});
-
 router.post('/search', function(request, response){
     console.log("search done", request.body.value);
     if(request.body.value !=""){

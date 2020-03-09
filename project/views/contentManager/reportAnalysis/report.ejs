@@ -4,65 +4,58 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>report analysis</title>
-        <link rel="stylesheet" href="../../../static/css/css/bootstrap.css">
         <link rel="stylesheet" href="../../../static/css/contentManager/reportAnalysis/report.css">
     </head>
-    <body onload="showReport()">
+    <body>
         <!-- navbar content start -->
-        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-            <a class="navbar-brand" href="#">express</a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-        
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav ml-auto">
-                    <li class="nav-item">
-                    <a class="nav-link" href="/contentManager/home">home <span class="sr-only">(current)</span></a>
-                    </li>
-                    <li class="nav-item">
-                    <a class="nav-link" href="/generalController/logout">logout</a>
-                    </li>
+        <nav>
+            <div class="home">
+                <a href="#">express</a>
+            </div>
+            <div class="menu">
+                <ul>
+                    <li><a href="/contentManager/home">home</a></li>
+                    <li><a href="/generalController/logout">logout</a></li>
                 </ul>
             </div>
         </nav>
         <!-- navbar content start -->
 
-        <div class="container" id="printReport">
+        <section>
             <div class="row">
-                <div class="col">
-                    <div class="p-5 bg-white text-dark border border-success rounded mt-5 shadow">
-                        <h1 id="todayPost"></h1>
-                        <h3>today's post count</h3>
+                <div class="col1">
+                    <div class="post">
+                        <h1>5</h1>
+                        <h3>today's post</h3>
                     </div>
-                </div>
-                <div class="col">
-                    <div class="p-5 bg-white text-dark border border-success rounded mt-5 shadow">
-                        <h1 id="totalPost"></h1>
-                        <h3>total post count</h3>
+                    <div class="post">
+                        <h1>15</h1>
+                        <h3>total post</h3>
                     </div>
-                </div>
-                <div class="col">
-                    <div class="p-5 bg-white text-dark border border-success rounded mt-5 shadow">
-                        <h1 id="pendingPost"></h1>
-                        <h3>pending post count</h3>
+                    <div class="post">
+                        <h1>5</h1>
+                        <h3>custom info</h3>
+                        <form>
+                            <select id="time" name="time">
+                              <option value="three-days">three days</option>
+                              <option value="one-week">one week</option>
+                              <option value="last-month">last month</option>
+                              <option value="one-year">one year</option>
+                            </select>
+                          </form>
                     </div>
-                </div>
-                <div class="col">
-                    <div class="p-5 bg-white text-dark border border-success rounded mt-5 shadow">
-                        <h1 id="warningPost"></h1>
-                        <h3>warning post count</h3>
+                    <div class="post">
+                        <h1>2</h1>
+                        <h3>pending post</h3>
                     </div>
+                    <div class="post">
+                        <h1>3</h1>
+                        <h3>deleted post</h3>
+                    </div>
+                    <a href="#" class="print">print report</a>
                 </div>
             </div>
-
-            <div class="row justify-content-center">
-                <div class="col m-5">
-                    <a href="#" class="btn btn-success" onclick="print()">print report</a> 
-                </div>
-            </div>
-        </div>
-        <script src="../../../static/js/lib/jquery-lib-min.js"></script>
-        <script src="../../../static/js/contentManager/reportData.js"></script>
+            
+        </section>
     </body>
 </html>

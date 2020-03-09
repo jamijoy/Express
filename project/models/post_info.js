@@ -21,16 +21,6 @@ module.exports = {
 				callback(false);
 			}
 		});
-	},
-	statusUpdateReport : function(post_id, callback){
-		var sql = "UPDATE `post_info` SET `post_status_id`= (SELECT post_status_id from post_status WHERE post_status.post_status_name = 'report') WHERE post_id = ?";
-		db.execute(sql, [post_id], function(status){
-			if(status){
-				callback(true);
-			}else{
-				callback(false);
-			}
-		});
     },
     getById : function(post_id, callback){
 		var sql = "select * from post_info where post_id=?";
@@ -65,25 +55,5 @@ module.exports = {
 				callback(false);
 			}
 		})
-	},
-	countAllPost: function(callback){
-		var sql = "SELECT COUNT(*) AS total_post FROM post_info";
-		db.getResults(sql, null, function(result){
-			if(result.length > 0){
-				callback(result);
-			}else{
-				callback([]);
-			}
-		});
-	},
-	countPendingPost: function(callback){
-		var sql = "SELECT COUNT(*) AS pending_post FROM post_info WHERE post_info.post_status_id = '50'";
-		db.getResults(sql, null, function(result){
-			if(result.length > 0){
-				callback(result);
-			}else{
-				callback([]);
-			}
-		});
 	}
 }

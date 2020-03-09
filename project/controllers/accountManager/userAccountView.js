@@ -2,7 +2,6 @@ var express = require('express');
 var router = express.Router();
 var user_details = require.main.require('./models/user_details');
 var content = require.main.require('./models/post_content');
-var msngr = require.main.require('./models/message_info');
 
 router.get('*', function(req, res, next){
 	if(req.cookies['loginUserId'] == null){
@@ -95,26 +94,6 @@ router.get('/delete/:id', function(req, res){
 		}
 		else{
 			console.log(req.params.id+" : couldn't get Deleted");
-		}
-	});
-});
-
-router.post('/:id', function(req, res){
-	var msgData={
-		sender: req.cookies["loginUserId"],
-		receiver: req.body.receiver,
-		status: 60,
-		time: "0000-00-00 00:00:00.",
-		txt: req.body.notifyTxt
-	}
-	msngr.insertData(msgData, function(status)
-	{
-		if(status)
-		{
-			res.redirect("/accountManager/home/");
-		}
-		else{
-			console.log(req.body.notifyTxt+" << couldn't get Delivered");
 		}
 	});
 });

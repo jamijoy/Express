@@ -28,7 +28,7 @@
 
             <div class="col2">
                 <% for(var i=0; i < userList.length; i++){ 
-                    if(userList[i].post_status_name =="pending"){
+                    if(userList[i].post_status_name !="approve"){
                         var millisecondInInteger = parseInt(userList[i].post_time);
                         var dateObject = new Date(millisecondInInteger);
                         var timeAndDate = dateObject.toLocaleString(); %>
@@ -43,7 +43,6 @@
                             <a href="/contentManager/contentRequest/delete/<%= userList[i].post_id %>" class="delete">delete</a>
                             <a href="/contentManager/contentRequest/warning/<%= userList[i].post_id %>" class="warning">warning</a>
                             <a href="/contentManager/contentRequest/block/<%= userList[i].post_id %>" class="block">block request</a>
-                            <a href="/contentManager/contentRequest/report/<%= userList[i].post_id %>" class="report">report</a>
                         </div>
                     <%
                         millisecondInInteger = null;

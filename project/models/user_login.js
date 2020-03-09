@@ -22,19 +22,9 @@ module.exports = {
 			}
 		});
 	},
-	getEmail : function(callback){
-		var sql = "select email from user_login";
-		db.getResults(sql, null, function(results){
-			if(results.length > 0){
-				callback(results);
-			}else{
-				callback(null);
-			}
-		});
-	},
-	update:function(userInfo,callback){
+	update:function(userInfo,callbacK){
 		var sql = "update user_login set email=? , password=? where user_id=?";
-		db.execute(sql, [userInfo.email, userInfo.password,userInfo.user_id], function(status){
+		db.execute(sql, [userInfo.mail,userInfo.pass,userInfo.userid], function(status){
 			if(status){
 				callback(true);
 			}else{
@@ -49,16 +39,6 @@ module.exports = {
 				callback(true);
 			}else{
 				callback(false);
-			}
-		});
-	},
-	getNextId : function(callback){
-		var sql = "SELECT auto_increment AS id FROM `information_schema`.`tables` WHERE table_name = 'user_login' AND table_schema = 'express'";
-		db.getResults(sql, null, function(result){
-			if(result.length > 0){
-				callback(result);
-			}else{
-				callback([]);
 			}
 		});
 	}
