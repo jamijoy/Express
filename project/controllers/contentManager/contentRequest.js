@@ -10,6 +10,14 @@ var account_block_request = require.main.require('./models/account_block_request
 
 var router = express.Router();
 
+router.get('*', function(req, res, next){
+	if(req.cookies['loginUserId'] == null){
+		res.redirect('/');
+	}else{
+		next();
+	}
+});
+
 router.get('/approve/:post_id', function(request, response){
     console.log('post approve request');
     console.log("what is request???", request.params.userList);
@@ -119,19 +127,30 @@ router.get('/block/:post_id', function(request, response){
     console.log('content manager report analysis page requested with get method!');
     post_info.getById(request.params.post_id, function(results){
         var userId = results.user_id;
+        var d = new Date();
+		var millisecond = d.getTime();
+        var d = null;
+        data = {
+            id: userId,
+            time: millisecond
+        }
 
-        account_block_request.insert(userId, function(status){
+        account_block_request.insert(data, function(status){
             if(status){
                 message_details.getId(function(incrementId){
                     messageId = incrementId.id;
         
                     message_details.insertDeleteMessage(function(status){
                         if(status){
+                            var d = new Date();
+                            var millisecond = d.getTime();
+                            var d = null;
                             data = {
                                 sender_id: request.cookies['loginUserId'],
                                 receiver_id: userId,
                                 message_id: messageId,
-                                message_status_id: "60"
+                                message_status_id: "60",
+                                time: millisecond
                             }
         
                             message_info.insert(data, function(status){
