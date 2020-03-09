@@ -2,6 +2,12 @@
 <html>
 <head>
 	<title><%= data.username %> - Express</title>
+	<style>
+		a{
+			text-decoration:none;
+			font-weight:bold;
+		}
+	</style>
 </head>
 <body style="background-color:gray;">
 	
@@ -81,9 +87,20 @@
 		
 		
 		<input type="button" style="border-radius:15px;background-color:lime;" value="Send Notification"><br/><br/>
-		<input type="button" style="border-radius:15px;background-color:green;" value="Block/Ban User"><br/><br/>
-		<input type="button" style="border-radius:15px;background-color:dodgerblue;" value="Unblock!"><br/><br/>
+		
 		</center>
+		<div style="border-radius:15px;background-color:aqua;padding:15px">
+			Action to user :<br/><center>
+			<% if(data.accstatus == 10) {%>
+					<a href="deactive/<%= data.userid %>"> Deactivate </a> | <a href="block/<%= data.userid %>"> Block </a> | <a href="delete/<%= data.userid %>"> Delete </a>
+			<% } else if(data.accstatus == 11){ %>
+					<a href="active/<%= data.userid %>"> Activate </a> | <a href="block/<%= data.userid %>"> Block </a> | <a href="delete/<%= data.userid %>"> Delete </a>
+			<% } else{ %>
+					<a href="active/<%= data.userid %>"> Activate </a> | <a href="delete/<%= data.userid %>"> Delete </a>
+			<% } %>
+			
+			</center>
+		</div>
 	</div>
 </body>
 </html>

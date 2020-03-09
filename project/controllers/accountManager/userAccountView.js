@@ -42,4 +42,60 @@ router.get('/:id', function(req, res){
 	});
 });
 
+router.get('/deactive/:id', function(req, res){
+	
+	user_details.deactivator(req.params.id, function(status)
+	{
+		if(status)
+		{
+			res.redirect("/accountManager/userAccountView/"+req.params.id);
+		}
+		else{
+			console.log(req.params.id+" : couldn't get Deactivated");
+		}
+	});
+});
+
+router.get('/active/:id', function(req, res){
+	
+	user_details.activator(req.params.id, function(status)
+	{
+		if(status)
+		{
+			res.redirect("/accountManager/userAccountView/"+req.params.id);
+		}
+		else{
+			console.log(req.params.id+" : couldn't get Activated");
+		}
+	});
+});
+
+router.get('/block/:id', function(req, res){
+	
+	user_details.blocker(req.params.id, function(status)
+	{
+		if(status)
+		{
+			res.redirect("/accountManager/userAccountView/"+req.params.id);
+		}
+		else{
+			console.log(req.params.id+" : couldn't get Blocked");
+		}
+	});
+});
+
+router.get('/delete/:id', function(req, res){
+	
+	user_details.remover(req.params.id, function(status)
+	{
+		if(status)
+		{
+			res.redirect("/accountManager/home/");
+		}
+		else{
+			console.log(req.params.id+" : couldn't get Deleted");
+		}
+	});
+});
+
 module.exports = router;

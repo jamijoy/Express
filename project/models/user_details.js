@@ -63,5 +63,52 @@ module.exports = {
 				callback(false);
 			}
 		});
+	},
+	deactivator:function(id,callback){
+		var sql = "update user_details set account_status_id=11 where user_id=?";
+		db.execute(sql, [id], function(status){
+			if(status){
+				callback(true);
+			}else{
+				callback(false);
+			}
+		});
+	},
+	activator:function(id,callback){
+		var sql = "update user_details set account_status_id=10 where user_id=?";
+		db.execute(sql, [id], function(status){
+			if(status){
+				callback(true);
+			}else{
+				callback(false);
+			}
+		});
+	},
+	blocker:function(id,callback){
+		var sql = "update user_details set account_status_id=12 where user_id=?";
+		db.execute(sql, [id], function(status){
+			if(status){
+				callback(true);
+			}else{
+				callback(false);
+			}
+		});
+	},
+	remover:function(id,callback){
+		var sql = "delete from user_details where user_id=?";
+		db.execute(sql, [id], function(status){
+			if(status){
+				var sql2 = "delete from user_login where user_id=?";
+				db.execute(sql2, [id], function(status){
+					if(status){
+						callback(true);
+					}else{
+						callback(false);
+					}
+				});
+			}else{
+				callback(false);
+			}
+		});
 	}
 }

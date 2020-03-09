@@ -3,6 +3,14 @@ var router = express.Router();
 var user_details = require.main.require('./models/user_details');
 var user_login = require.main.require('./models/user_login');
 
+router.get('*', function(req, res, next){
+	if(req.cookies['loginUserId'] == null){
+		res.redirect('/');
+	}else{
+		next();
+	}
+});
+
 router.get('/', function(req, res){
 	console.log('Edit Profile page requested!');
 	
