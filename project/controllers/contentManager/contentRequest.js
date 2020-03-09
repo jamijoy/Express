@@ -31,6 +31,18 @@ router.get('/approve/:post_id', function(request, response){
     });
 });
 
+router.get('/report/:post_id', function(request, response){
+    console.log('post report request');
+    post_info.statusUpdateReport(request.params.post_id, function(status){
+        if(status){
+            console.log('approved');
+            response.redirect('/contentManager/contentView/contentRequest');
+        }else{
+            console.log('error');
+        }
+    });
+});
+
 router.get('/delete/:post_id', function(request, response){
     console.log('post delete request');
     var userId = null;
