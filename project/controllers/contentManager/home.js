@@ -21,7 +21,10 @@ router.get('/', function(request, response){
 
 router.get('/viewProfile', function(request, response){
     console.log('content manager profile page requested with get method!');
-    response.render('contentManager/profile/viewProfile');
+    user_details.getAllInfo(request.cookies['loginUserId'], function(results){
+        console.log(results);
+        response.render('contentManager/profile/viewProfile', {user: results});
+    });
 });
 
 router.get('/index', function(request, response){

@@ -22,9 +22,9 @@ module.exports = {
 			}
 		});
 	},
-	update:function(userInfo,callbacK){
+	update:function(userInfo,callback){
 		var sql = "update user_login set email=? , password=? where user_id=?";
-		db.execute(sql, [userInfo.mail,userInfo.pass,userInfo.userid], function(status){
+		db.execute(sql, [userInfo.email, userInfo.password,userInfo.user_id], function(status){
 			if(status){
 				callback(true);
 			}else{

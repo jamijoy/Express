@@ -34,12 +34,16 @@ router.post('/', function(req, res){
 	
 	var userInfo={
 		username: req.body.name,
-		mail: req.body.mail,
-		phone: req.body.phn,
+		email: req.body.mail,
+		phone_number: req.body.phn,
 		bio: req.body.bio,
 		dob: req.body.dob,
-		pass: req.body.pass1,
-		userid: req.cookies["loginUserId"]
+		password: req.body.pass1,
+		user_id: req.cookies["loginUserId"],
+		website: "",
+		address: "",
+		firstName: "",
+		lastName: ""
 	}
 	
 	user_details.update(userInfo,function(status){
