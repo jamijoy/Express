@@ -10,5 +10,15 @@ module.exports = {
 				callback(false);
 			}
 		});
+	},
+	getTotalWarning: function(callback){
+		var sql = "SELECT SUM(account_warning.warning_count) AS total_warning FROM account_warning";
+		db.getResults(sql, null, function(results){
+			if(results.length > 0){
+				callback(results);
+			}else{
+				callback([]);
+			}
+		});
 	}
 }

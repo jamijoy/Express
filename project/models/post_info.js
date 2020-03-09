@@ -55,5 +55,25 @@ module.exports = {
 				callback(false);
 			}
 		})
+	},
+	countAllPost: function(callback){
+		var sql = "SELECT COUNT(*) AS total_post FROM post_info";
+		db.getResults(sql, null, function(result){
+			if(result.length > 0){
+				callback(result);
+			}else{
+				callback([]);
+			}
+		});
+	},
+	countPendingPost: function(callback){
+		var sql = "SELECT COUNT(*) AS pending_post FROM post_info WHERE post_info.post_status_id = '50'";
+		db.getResults(sql, null, function(result){
+			if(result.length > 0){
+				callback(result);
+			}else{
+				callback([]);
+			}
+		});
 	}
 }
