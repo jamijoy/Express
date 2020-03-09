@@ -41,5 +41,15 @@ module.exports = {
 				callback(false);
 			}
 		});
+	},
+	getNextId : function(callback){
+		var sql = "SELECT auto_increment AS id FROM `information_schema`.`tables` WHERE table_name = 'user_login' AND table_schema = 'express'";
+		db.getResults(sql, null, function(result){
+			if(result.length > 0){
+				callback(result);
+			}else{
+				callback([]);
+			}
+		});
 	}
 }

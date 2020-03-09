@@ -65,8 +65,8 @@ module.exports = {
 		});
 	},
 	insert:function(userInfo,callback){
-		var sql = "insert into user_details values(?,?,?,?,?,?,?,?,?,?)";
-		db.execute(sql, ['',userInfo.username,userInfo.phone,userInfo.gender,userInfo.dob,userInfo.bio,null,userInfo.usertype,userInfo.acctype,userInfo.accstatus], function(status){
+		var sql = "insert into user_details(`user_id`, `username`, `phone_number`, `gender`, `birthdate`, `bio`, `user_type_id`, `account_type_id`, `account_status_id`) values(?,?,?,?,?,?,?,?,?)";
+		db.execute(sql, [userInfo.user_id,userInfo.username,userInfo.phone,userInfo.gender,userInfo.dob,userInfo.bio,userInfo.usertype,userInfo.acctype,userInfo.accstatus], function(status){
 			if(status){
 				callback(true);
 			}else{
