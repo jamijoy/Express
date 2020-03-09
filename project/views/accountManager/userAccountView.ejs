@@ -7,7 +7,31 @@
 			text-decoration:none;
 			font-weight:bold;
 		}
+		.notif{
+			border-radius:15px;
+			background-color:dodgerblue;
+			padding:10px;
+		}
+		.txt{
+			color:black;
+			display:none;
+		}
+		.sender{
+			border-radius:15px;
+			background-color:lime;
+			padding:10px;
+			display:none;
+		}
 	</style>
+	<script>
+		function notification()
+		{
+			alert("woking");
+			document.getElementById("notify").style.display="none";
+			document.getElementById("notifyTxt").style.display="block";
+			document.getElementById("send").style.display="block";
+		}
+	</script>
 </head>
 <body style="background-color:gray;">
 	
@@ -86,7 +110,12 @@
 			<% } %>
 		
 		
-		<input type="button" style="border-radius:15px;background-color:lime;" value="Send Notification"><br/><br/>
+		<input type="button" class="notif" onclick="notification()" id="notify" value=" Notify User "><br/>
+			<form method="post">
+				<textarea rows="4" cols="40" id="notifyTxt" name="notifyTxt" placeholder="Enter a short message here ..." class="txt"></textarea>
+						<input type="text" value="<%= data.userid %>" name="receiver" style="display:none;">
+							<input type="submit" class="sender" id="send" value=" Send ">
+			</form><br/>
 		
 		</center>
 		<div style="border-radius:15px;background-color:aqua;padding:15px">
