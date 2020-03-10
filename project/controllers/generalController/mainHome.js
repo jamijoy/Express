@@ -11,17 +11,14 @@ router.get('/', function(request, response){
 			console.log("general home controllers");
             console.log(result.user_type_id);
             
-			if(result.user_type_id == "21" && result.account_status_id != "12"){
+			if(result.user_type_id == "21"){
                 response.redirect('/contentManager/home');
             }
-			else if(result.user_type_id == "22" && result.account_status_id != "12"){
+			else if(result.user_type_id == "22"){
                 response.redirect('/accountManager/home');
             }
-			else if(result.user_type_id == "20" && result.account_status_id != "12"){
-                response.redirect('/systemAdmin/home');
-            }
-            else{
-                response.send('User Account Has Been Blocked ...!');
+            else if(result.user_type_id == "user"){
+                response.render('customer/home', {user: result});
             }
 			
 		});
