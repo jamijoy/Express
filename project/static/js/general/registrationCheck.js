@@ -38,6 +38,7 @@ function keyUpCheck(){
                 if($('#email').val() == results[i].email){
                     $('#email').css('border', '3px solid red');
                     $('#submit').prop("disabled",true);
+					break;
                 }
                 else{
                     $('#email').css('border', '3px solid green');

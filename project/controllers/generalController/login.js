@@ -12,45 +12,54 @@ router.get('/', function(req, res){
 
 router.post('/', function(request, response){
     console.log('post request from login');
-	var user ={
-		email: request.body.email,
-		password: request.body.password
-    };
 	
-    console.log(user.email, user.password);
-	
-	user_login.validate(user, function(status){
+	if(request.body.email != "" && request.body.password != ""){
+		var user ={
+			email: request.body.email,
+			password: request.body.password
+		};
 		
-	 	if(status){
+		console.log(user.email, user.password);
+		
+		user_login.validate(user, function(status){
 			
-			console.log('successfully login with ');
-			
-			user_login.getByEmail(user.email, function(results){
+			if(status){
 				
-				if(results.length > 0){
-					
-					// setting up Cookies
-					response.cookie('loginUserId', results[0].user_id);
-					response.cookie('loginUserMail', user.email);
-					
-					//just for value testing if its getting accurate data
-					var loginUserId = request.cookies['loginUserId'];
-					console.log('Call for details of >> ', loginUserId);
-					
-					//Redirecting to the Main Home Section
-					response.redirect('/generalController/mainHome');
-				}
+				console.log('successfully login with ');
 				
-				else{
-					console.log("login page back");
-					response.redirect('/');
-				}
-			});
-        }
-        else{
-			response.send('invalid username/password');
-		}
-	});
+				user_login.getByEmail(user.email, function(results){
+					
+					if(results.length > 0){
+						
+						// setting up Cookies
+						response.cookie('loginUserId', results[0].user_id);
+						response.cookie('loginUserMail', user.email);
+						
+						//just for value testing if its getting accurate data
+						var loginUserId = request.cookies['loginUserId'];
+						console.log('Call for details of >> ', loginUserId);
+						
+						//Redirecting to the Main Home Section
+						response.redirect('/generalController/mainHome');
+					}
+					
+					else{
+						console.log("login page back");
+						response.redirect('/');
+					}
+				});
+			}
+			else{
+				response.send('invalid username/password');
+			}
+		});
+	}
+	else{
+		// request.session.loginMsg = "Email or Password is required";
+		response.send("Email or Password is required");
+	}
+	
+	
 });
 
 module.exports = router;
