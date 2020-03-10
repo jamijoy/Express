@@ -120,5 +120,15 @@ module.exports = {
 				callback(false);
 			}
 		});
+	},
+	getNameAndId: function(callback){
+		var sql = "select user_id, username from user_details";
+		db.getResults(sql, null, function(results){
+			if(results.length > 0){
+				callback(results);
+			}else{
+				callback(null);
+			}
+		});
 	}
 }

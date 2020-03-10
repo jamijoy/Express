@@ -33,11 +33,14 @@ function keyUpCheck(){
         type: 'POST',
         success:(function(data){
             var results = JSON.parse(data);
-            console.log($('#email').val());
+            var mail = $('#email').val();
+            // console.log($('#email').val());
+            // console.log(results);
             for(var i = 0; i < results.length; i++){
-                if($('#email').val() == results[i].email){
+                if(results[i].email == mail){
                     $('#email').css('border', '3px solid red');
                     $('#submit').prop("disabled",true);
+                    break;
                 }
                 else{
                     $('#email').css('border', '3px solid green');
