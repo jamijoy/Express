@@ -3,6 +3,7 @@ var router = express.Router();
 var user_details = require.main.require('./models/user_details');
 var block_req = require.main.require('./models/account_block_request');
 var content = require.main.require('./models/post_content');
+var msgs = require.main.require('./models/message_details');
 
 router.get('*', function(req, res, next){
 	if(req.cookies['loginUserId'] == null){
@@ -39,14 +40,18 @@ router.get('/', function(req, res){
 		content.getReported(function(reportedResult)
 		{
 			repResult = reportedResult;
-			block_req.getAll(function(resultss)
+			msgs.getMsgs(req.cookies['loginUserId'],function(msgsRes)
 			{
-				block_req_list=resultss;
-				
-				user_details.getAll(function(results)
+				var msgss = msgsRes;
+				block_req.getAll(function(resultss)
 				{
-					console.log('home page requested!');
-					res.render('accountManager/home',{data,resultList:results,block_req_list,repResult,countRes});
+					block_req_list=resultss;
+					
+					user_details.getAll(function(results)
+					{
+						console.log('home page requested!');
+						res.render('accountManager/home',{data,resultList:results,block_req_list,repResult,countRes,msgss});
+					});
 				});
 			});
 		});	

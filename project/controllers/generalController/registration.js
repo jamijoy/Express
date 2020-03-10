@@ -34,19 +34,19 @@ router.post('/', function(req, res){
 				acctype: 31,
 				accstatus: 10
 			}
-			// user_details.insert(userInfo,function(status){
-			// 	if(status){
-			// 		user_login.insert(userInfo,function(status){
-			// 			if(status){
-			// 				res.redirect("/");
-			// 			}else{
-			// 				console.log(userInfo);
-			// 			}
-			// 		});
-			// 	}else{
-			// 		console.log(userInfo);
-			// 	}
-			// });
+			user_details.insert(userInfo,function(status){
+				if(status){
+					user_login.insert(userInfo,function(status){
+						if(status){
+							res.redirect("/");
+						}else{
+							console.log(userInfo);
+						}
+					});
+				}else{
+					console.log(userInfo);
+				}
+			});
 		}
 		else{
 			console.log("error user id");
