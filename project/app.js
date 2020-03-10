@@ -7,6 +7,9 @@ var cookieParser = require('cookie-parser');
 var mySql = require('mysql');
 var app = express();
 
+//Instance
+var app = express();
+
 // *****general declaration*****
 var login = require('./controllers/generalController/login');
 var logout = require('./controllers/generalController/logout');
@@ -39,6 +42,10 @@ var userAccountView2 = require('./controllers/systemAdmin/userAccountView');
 // *****system admin declaration*****
 
 // *****user declaration*****
+var userHome = require('./controllers/user/home');
+var userProfile = require('./controllers/user/profile');
+var userLogin = require('./controllers/user/login');
+var userLogout = require('./controllers/user/logout');
 // *****user declaration*****
 
 // declaration end
@@ -53,6 +60,10 @@ app.use(expSession({secret:'Hello Express', saveUninitialized: true, resave:fals
 app.use('/static', express.static('static'));
 app.use('../../scFiles', express.static('static'));
 app.use(cookieParser());
+
+app.use('/assets', express.static('assets'));
+app.use('/home/assets', express.static('assets'));
+app.use('/:username/assets', express.static('assets'));
 
 // *****general middleware  start*****
 app.use('/', login);
@@ -87,9 +98,10 @@ app.use('/contentManager/sendMessage',contentManagerSendMessage);
 // *****content manager middleware end*****
 
 // *****user middleware  start*****
+<<<<<<< HEAD
 app.use('/systemAdmin/home', systemAdminHome);
 app.use('/systemAdmin/profile', systemAdminHome);
-app.use('/systemAdmin/contentView', systemAdminHome);
+app.use('/systemAdmin/register', systemAdminHome);
 app.use('/systemAdmin/search', systemAdminHome);
 app.use('/systemAdmin/reportAnalysis', systemAdminHome);
 app.use('/systemAdmin/createPost', systemAdminHome);
@@ -99,6 +111,12 @@ app.use('/systemAdmin/registerManager', registerManager);
 app.use('/systemAdmin/userAccountView', userAccountView2);
 app.use('/systemAdmin/registerManager', registerManager);
 app.use('/systemAdmin/userAccountView', userAccountView2);
+=======
+app.use('/home', userHome);
+app.use('/login', userLogin);
+app.use('/logout', userLogout);
+app.use('/:username', userProfile);
+>>>>>>> 70e125275de57d725d499c9b24e38ee1c2116f57
 // *****user middleware end*****
 
 // middleware end

@@ -74,7 +74,7 @@ module.exports = {
 		});
 	},
 	getById : function(userid,callback){
-		var sql = "select post_info.user_id, post_info.post_id,post_info.post_type_id,post_status_id,post_content.post_text,post_info.post_time from post_content,post_info where post_content.post_id=post_info.post_id and post_info.user_id="+userid;
+		var sql = "select post_info.user_id, post_info.post_id,post_info.post_type_id,post_status_id,post_content.post_text,post_info.post_time from post_content,post_info where post_content.post_id=post_info.post_id and post_info.user_id=? order by post_info.post_id desc";
 		db.getResults(sql, [userid], function(results){
 			if(results.length > 0){
 				callback(results);

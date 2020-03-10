@@ -1,6 +1,14 @@
 var express = require('express');
 var router = express.Router();
 
+router.get('*', function(req, res, next){
+	if(req.cookies['loginUserId'] == null){
+		res.redirect('/');
+	}else{
+		next();
+	}
+});
+
 router.get('/', function(request, response){
     console.log('system admin home page requested with get method!');
     response.render('systemAdmin/home/home');
@@ -11,9 +19,12 @@ router.get('/viewProfile', function(request, response){
     response.render('systemAdmin/profile/viewProfile');
 });
 
-router.get('/contentRequest', function(request, response){
-    console.log('system admin search page requested with get method!');
-    response.render('systemAdmin/contentView/contentRequest');
+router.get('/amRegister', function(request, response){
+    response.redirect('/systemAdmin/registerManager/22');
+});
+
+router.get('/cmRegister', function(request, response){
+    response.redirect('/systemAdmin/registerManager/21');
 });
 
 router.get('/report', function(request, response){
