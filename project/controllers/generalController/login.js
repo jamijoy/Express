@@ -9,6 +9,30 @@ router.get('/', function(req, res){
 	res.render('index');
 });
 
+// router.post('/', function(request, response){
+//     console.log('login page requested with post method!');
+// 	if(request.body.username == request.body.password){
+// 		if(request.body.username == "pcm" && request.body.password == "pcm"){
+// 			console.log('login page requested with post method in content manager!');
+// 			response.redirect('/contentManager/home');
+// 		}
+// 		else if(request.body.username == "acm" && request.body.password == "acm"){
+// 			request.session.username=request.body.username;
+// 			console.log('login page requested with post method in account manager!');
+// 			response.redirect('/accountManager/home');
+// 		}
+// 		else if(request.body.username == "sa" && request.body.password == "sa"){
+// 			console.log('login page requested with post method in account manager!');
+// 			response.redirect('/systemAdmin/home');
+// 		}
+// 		// else{
+// 		// 	response.redirect('/home');
+// 		// }
+//     }
+//     else{
+// 		response.send('invalid username/password');
+// 	}
+// });
 
 router.post('/', function(request, response){
     console.log('post request from login');

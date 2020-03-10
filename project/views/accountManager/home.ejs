@@ -81,9 +81,7 @@ a{
 					<a href="userAccountView/<%=repResult[i].user_id%>">Take Action</a><br/>
 					<%=repResult[i].post_time%><br/>
 					<%=repResult[i].post_text%><br/><br/>
-					<% if(countRes[i].res != null) { %>
-						<%=countRes[i].res%> Likes
-					<% } %>
+					<%=countRes[i].res%> Likes
 				</div>
 			<% } %>
 	</div>
@@ -99,20 +97,6 @@ a{
 					12 Feb 2020, 08:40PM<br/>
 					Account ID : <a href="/accountManager/userAccountView/<%= block_req_list[i].user_id %>"><%= block_req_list[i].user_id %></a> <br/>
 					| Status : <b><%= block_req_list[i].block_status %></b> | <br/><br/>
-				</div>
-			<% } %>
-			
-			<br/>Messages from Content Manager :
-			
-			<% for(var i=0; i < msgss.length; i++){ %>	
-				<div style="width:90%;background-color:rgb(144,144,144);border-radius:15px;padding:15px">
-					<h4><%= msgss[i].sender_id %></h4>
-					<% if(msgss[i].message_status_id == 60) {%>
-							sent
-					<% } else { %>
-							seen
-					<% } %> | <%= msgss[i].msg_time %><br/>
-					<%= msgss[i].message_text %> <br/><br/>
 				</div>
 			<% } %>			
 		</center>

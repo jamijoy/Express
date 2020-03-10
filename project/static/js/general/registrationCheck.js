@@ -12,6 +12,10 @@ function check(){
                     console.log(results[i].email);
                     flag = false;
                 }
+                if($('#email').val() == ""){
+                    $('#email').css('border', '3px solid red');
+                    $('#submit').prop("disabled",true);
+                }
             }
         }),
         async: false
@@ -49,4 +53,42 @@ function keyUpCheck(){
             }
         })
     });
+}
+function checkName(){
+    if($('#username').val() != ""){
+        $('#username').css('border', '3px solid green');
+        $('#submit').prop("disabled",false);
+    }
+    else{
+        $('#username').css('border', '3px solid red');
+        $('#submit').prop("disabled",true);
+    }
+}
+function passwordCheck(){
+    console.log($('#password').val());
+    console.log($('#confirm_password').val());
+    if($('#password').val() != ""){
+        if($('#confirm_password').val() != ""){
+            if($('#password').val() == $('#confirm_password').val()){
+                $('#password').css('border', '3px solid green');
+                $('#confirm_password').css('border', '3px solid green');
+                $('#submit').prop("disabled",false);
+            }
+            else if($('#password').val() != $('#confirm_password').val()){
+                $('#password').css('border', '3px solid red');
+                $('#confirm_password').css('border', '3px solid red');
+                $('#submit').prop("disabled",true);
+            }
+        }
+        else if($('#confirm_password').val() == ""){
+            $('#password').css('border', '3px solid red');
+            $('#confirm_password').css('border', '3px solid red');
+            $('#submit').prop("disabled",true);
+        }
+    }
+    else if($('#password').val() == ""){
+        $('#password').css('border', '3px solid red');
+        $('#confirm_password').css('border', '3px solid red');
+        $('#submit').prop("disabled",true);
+    }
 }
