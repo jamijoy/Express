@@ -98,7 +98,7 @@ app.use('/contentManager/sendMessage',contentManagerSendMessage);
 // *****content manager middleware end*****
 
 // *****user middleware  start*****
-<<<<<<< HEAD
+
 app.use('/systemAdmin/home', systemAdminHome);
 app.use('/systemAdmin/profile', systemAdminHome);
 app.use('/systemAdmin/register', systemAdminHome);
@@ -111,12 +111,11 @@ app.use('/systemAdmin/registerManager', registerManager);
 app.use('/systemAdmin/userAccountView', userAccountView2);
 app.use('/systemAdmin/registerManager', registerManager);
 app.use('/systemAdmin/userAccountView', userAccountView2);
-=======
+
 app.use('/home', userHome);
 app.use('/login', userLogin);
 app.use('/logout', userLogout);
 app.use('/:username', userProfile);
->>>>>>> 70e125275de57d725d499c9b24e38ee1c2116f57
 // *****user middleware end*****
 
 // middleware end
