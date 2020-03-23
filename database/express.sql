@@ -1,15 +1,13 @@
 -- phpMyAdmin SQL Dump
--- version 4.7.4
--- https://www.phpmyadmin.net/
+-- version 4.5.0.2
+-- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 08, 2020 at 11:41 AM
--- Server version: 10.1.28-MariaDB
--- PHP Version: 7.1.11
+-- Generation Time: Mar 10, 2020 at 05:06 AM
+-- Server version: 10.0.17-MariaDB
+-- PHP Version: 5.6.14
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET AUTOCOMMIT = 0;
-START TRANSACTION;
 SET time_zone = "+00:00";
 
 
@@ -206,14 +204,65 @@ INSERT INTO `message_status` (`message_status_id`, `message_status_name`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `photo`
+--
+
+CREATE TABLE `photo` (
+  `photo_id` int(20) NOT NULL,
+  `filename` varchar(255) NOT NULL,
+  `source` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `post`
+--
+
+CREATE TABLE `post` (
+  `post_id` int(11) NOT NULL,
+  `text` varchar(1000) DEFAULT NULL,
+  `post_image_source` varchar(255) DEFAULT NULL,
+  `post_image_filename` varchar(255) DEFAULT NULL,
+  `time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `uid` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `post`
+--
+
+INSERT INTO `post` (`post_id`, `text`, `post_image_source`, `post_image_filename`, `time`, `uid`) VALUES
+(1, 'This is 2nd post', './assets/public/uploads/images', 'image-1583599089721.jpg', '2020-03-07 16:38:09', 1),
+(2, 'This is 3rd post', './assets/public/uploads/images', 'image-1583599201595.jpg', '2020-03-09 12:04:48', 1),
+(3, 'This is a demo post', './assets/public/uploads/images', 'image-1583607889317.jpg', '2020-03-07 19:04:49', 1),
+(4, 'This is post without image', NULL, NULL, '2020-03-09 12:04:35', 1),
+(5, '', './assets/public/uploads/images', 'image-1583737214431.jpg', '2020-03-09 07:00:14', 1),
+(6, 'Here is a cool pic of me... :D', './assets/public/uploads/images', 'image-1583755107098.jpg', '2020-03-09 12:04:42', 2),
+(7, 'Trafalgar Law', './assets/public/uploads/images', 'image-1583771842638.jpg', '2020-03-09 16:37:22', 2);
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `post_comment`
 --
 
 CREATE TABLE `post_comment` (
+  `comment_id` int(5) NOT NULL,
   `post_id` int(5) NOT NULL,
   `comment_user_id` int(5) NOT NULL,
-  `comment_id` varchar(100) NOT NULL
+  `comment_text` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `post_comment`
+--
+
+INSERT INTO `post_comment` (`comment_id`, `post_id`, `comment_user_id`, `comment_text`) VALUES
+(1, 7, 2, 'Nice photo'),
+(2, 7, 1, 'I like his sowrd...'),
+(3, 7, 1, 'Wow!!! Beautiful Work...'),
+(4, 7, 1, 'On the Nine mountains and Eight seas there is nothing he cant cut...');
 
 -- --------------------------------------------------------
 
@@ -244,14 +293,14 @@ CREATE TABLE `post_content` (
 --
 
 INSERT INTO `post_content` (`post_id`, `post_text`, `post_image`, `post_image_source`) VALUES
-(20000, 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.', NULL, NULL),
+(20000, 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry''s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.', NULL, NULL),
 (20002, 'It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.', NULL, NULL),
-(20003, 'The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using \'Content here, content here\', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for \'lorem ipsum\' will uncover many web sites still in their infancy.', NULL, NULL),
-(20004, 'There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don\'t look even slightly believable.', NULL, NULL),
-(20005, 'Lorem Ipsum comes from sections 1.10.32 and 1.10.33 of \"de Finibus Bonorum et Malorum\" (The Extremes of Good and Evil) by Cicero, written in 45 BC.', NULL, NULL),
-(20006, 'The standard chunk of Lorem Ipsum used since the 1500s is reproduced below for those interested. Sections 1.10.32 and 1.10.33 from \"de Finibus Bonorum et Malorum\" by Cicero are also reproduced in their exact original form, accompanied by English versions from the 1914 translation by H. Rackham.', NULL, NULL),
+(20003, 'The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using ''Content here, content here'', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for ''lorem ipsum'' will uncover many web sites still in their infancy.', NULL, NULL),
+(20004, 'There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don''t look even slightly believable.', NULL, NULL),
+(20005, 'Lorem Ipsum comes from sections 1.10.32 and 1.10.33 of "de Finibus Bonorum et Malorum" (The Extremes of Good and Evil) by Cicero, written in 45 BC.', NULL, NULL),
+(20006, 'The standard chunk of Lorem Ipsum used since the 1500s is reproduced below for those interested. Sections 1.10.32 and 1.10.33 from "de Finibus Bonorum et Malorum" by Cicero are also reproduced in their exact original form, accompanied by English versions from the 1914 translation by H. Rackham.', NULL, NULL),
 (20008, 'Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).', NULL, NULL),
-(20009, 'Lorem Ipsum comes from sections 1.10.32 and 1.10.33 of \"de Finibus Bonorum et Malorum\" (The Extremes of Good and Evil) by Cicero, written in 45 BC.', NULL, NULL),
+(20009, 'Lorem Ipsum comes from sections 1.10.32 and 1.10.33 of "de Finibus Bonorum et Malorum" (The Extremes of Good and Evil) by Cicero, written in 45 BC.', NULL, NULL),
 (20010, 'hi I am content manager', NULL, NULL),
 (20011, 'checking time!!!', NULL, NULL),
 (20012, 'final check for time check', NULL, NULL),
@@ -361,6 +410,37 @@ INSERT INTO `post_type` (`post_type_id`, `post_type_name`) VALUES
 (40, 'public'),
 (41, 'private'),
 (42, 'anonymous');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `user`
+--
+
+CREATE TABLE `user` (
+  `uid` int(11) NOT NULL,
+  `user_image_filename` varchar(255) DEFAULT NULL,
+  `user_image_source` varchar(255) DEFAULT NULL,
+  `email` varchar(40) NOT NULL,
+  `username` varchar(40) NOT NULL,
+  `password` varchar(20) NOT NULL,
+  `alt_email` varchar(40) DEFAULT NULL,
+  `firstname` varchar(40) NOT NULL,
+  `lastname` varchar(40) NOT NULL,
+  `gender` varchar(10) DEFAULT NULL,
+  `birthday` date DEFAULT NULL,
+  `bio` varchar(255) DEFAULT NULL,
+  `website` varchar(50) DEFAULT NULL,
+  `address` varchar(255) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `user`
+--
+
+INSERT INTO `user` (`uid`, `user_image_filename`, `user_image_source`, `email`, `username`, `password`, `alt_email`, `firstname`, `lastname`, `gender`, `birthday`, `bio`, `website`, `address`) VALUES
+(1, 'image-1583590988460.jpg', './assets/public/uploads/images', 'nahian@gmail.com', 'nahian', '1234', 'md.nahian36@gmail.com', 'Md', 'Nahian', 'Male', '0000-00-00', 'These violent delights have violent ends.', 'https://github.com/nahianmd', 'Dhaka, Bangladesh'),
+(2, 'image-1583754166618.jpg', './assets/public/uploads/images', 'zoro@gmail.com', 'zoro', '1234', '', 'Roronoa', 'Zoro', 'Male', '0000-00-00', 'Of the nine mountains and eight seas, there is nothing I cant cut.', 'https://onepiece.com', 'Shimotsuki Village');
 
 -- --------------------------------------------------------
 
@@ -503,6 +583,24 @@ ALTER TABLE `message_status`
   ADD PRIMARY KEY (`message_status_id`);
 
 --
+-- Indexes for table `photo`
+--
+ALTER TABLE `photo`
+  ADD PRIMARY KEY (`photo_id`);
+
+--
+-- Indexes for table `post`
+--
+ALTER TABLE `post`
+  ADD PRIMARY KEY (`post_id`);
+
+--
+-- Indexes for table `post_comment`
+--
+ALTER TABLE `post_comment`
+  ADD PRIMARY KEY (`comment_id`);
+
+--
 -- Indexes for table `post_comment_details`
 --
 ALTER TABLE `post_comment_details`
@@ -533,6 +631,12 @@ ALTER TABLE `post_type`
   ADD PRIMARY KEY (`post_type_id`);
 
 --
+-- Indexes for table `user`
+--
+ALTER TABLE `user`
+  ADD PRIMARY KEY (`uid`);
+
+--
 -- Indexes for table `user_details`
 --
 ALTER TABLE `user_details`
@@ -559,74 +663,81 @@ ALTER TABLE `user_type`
 --
 ALTER TABLE `account_status`
   MODIFY `account_status_id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
-
 --
 -- AUTO_INCREMENT for table `account_type`
 --
 ALTER TABLE `account_type`
   MODIFY `account_type_id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
-
 --
 -- AUTO_INCREMENT for table `following_status`
 --
 ALTER TABLE `following_status`
   MODIFY `following_status_id` int(5) NOT NULL AUTO_INCREMENT;
-
 --
 -- AUTO_INCREMENT for table `message_details`
 --
 ALTER TABLE `message_details`
   MODIFY `message_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=40021;
-
 --
 -- AUTO_INCREMENT for table `message_status`
 --
 ALTER TABLE `message_status`
   MODIFY `message_status_id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=62;
-
+--
+-- AUTO_INCREMENT for table `photo`
+--
+ALTER TABLE `photo`
+  MODIFY `photo_id` int(20) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT for table `post`
+--
+ALTER TABLE `post`
+  MODIFY `post_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+--
+-- AUTO_INCREMENT for table `post_comment`
+--
+ALTER TABLE `post_comment`
+  MODIFY `comment_id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 --
 -- AUTO_INCREMENT for table `post_comment_details`
 --
 ALTER TABLE `post_comment_details`
   MODIFY `comment_id` int(5) NOT NULL AUTO_INCREMENT;
-
 --
 -- AUTO_INCREMENT for table `post_content`
 --
 ALTER TABLE `post_content`
   MODIFY `post_id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20027;
-
 --
 -- AUTO_INCREMENT for table `post_info`
 --
 ALTER TABLE `post_info`
   MODIFY `post_id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20027;
-
 --
 -- AUTO_INCREMENT for table `post_status`
 --
 ALTER TABLE `post_status`
   MODIFY `post_status_id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=53;
-
 --
 -- AUTO_INCREMENT for table `post_type`
 --
 ALTER TABLE `post_type`
   MODIFY `post_type_id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=43;
-
+--
+-- AUTO_INCREMENT for table `user`
+--
+ALTER TABLE `user`
+  MODIFY `uid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT for table `user_login`
 --
 ALTER TABLE `user_login`
   MODIFY `user_id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10007;
-
 --
 -- AUTO_INCREMENT for table `user_type`
 --
 ALTER TABLE `user_type`
   MODIFY `user_type_id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
-COMMIT;
-
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
